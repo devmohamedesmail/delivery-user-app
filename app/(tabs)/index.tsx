@@ -1,98 +1,79 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from 'react'
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import Layout from '@/components/ui/layout'
+import { useRef } from 'react'
+import BottomSheet from '@gorhom/bottom-sheet';
+import { useTranslation } from 'react-i18next'
+import { usePlace } from '@/hooks/usePlace'
+import SlideShow from '@/components/screens/home/side-show'
+import StoreTypesSection from '@/components/screens/home/store-types-section';
+import HomeHeader from '@/components/screens/home/home-header';
+import {View,Text,ScrollView,TouchableOpacity} from 'react-native'
+import BottomPaper from '@/components/ui/bottom-paper';
+import { Ionicons } from '@expo/vector-icons'
 
-export default function HomeScreen() {
+export default function Home() {
+ const bottomSheetRef = useRef<BottomSheet>(null);
+  const { t } = useTranslation()
+  const { places, selectedPlace, setSelectedPlace } = usePlace()
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <>
+    <Layout>
+      <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
+       <SlideShow />
+       <StoreTypesSection />
+    </Layout>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+
+      <BottomPaper ref={bottomSheetRef} snapPoints={['50%']}>
+        <View className="flex-1 px-5 pb-8">
+          <Text className="text-xl font-bold mb-4 text-center text-gray-800 arabic-font-bold mt-2">
+            {t("common.select_place") || "Select Delivery Location"}
+          </Text>
+
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
+            {places.map((place) => (
+              <TouchableOpacity
+                key={place.id}
+                onPress={() => {
+                  setSelectedPlace(place);
+                  bottomSheetRef.current?.close();
+                }}
+                className={`flex-row items-center justify-between p-4 mb-3 rounded-xl border ${selectedPlace?.id === place.id
+                  ? "bg-[#fd4a12]/10 border-[#fd4a12]"
+                  : "bg-gray-50 border-gray-100"
+                  }`}
+              >
+                <View className="flex-row items-center flex-1">
+                  <View className={`w-10 h-10 rounded-full items-center justify-center mr-3 ${selectedPlace?.id === place.id ? "bg-[#fd4a12]" : "bg-gray-200"
+                    }`}>
+                    <Ionicons
+                      name="location"
+                      size={20}
+                      color={selectedPlace?.id === place.id ? "white" : "#6B7280"}
+                    />
+                  </View>
+                  <View className="flex-1">
+                    <Text className={`text-base font-bold mb-0.5 text-left ${selectedPlace?.id === place.id ? "text-[#fd4a12]" : "text-gray-800"
+                      }`}>
+                      {place.name}
+                    </Text>
+                    {place.description && (
+                      <Text className="text-xs text-gray-500 text-left" numberOfLines={1}>
+                        {place.description}
+                      </Text>
+                    )}
+                  </View>
+                </View>
+
+                {selectedPlace?.id === place.id && (
+                  <Ionicons name="checkmark-circle" size={24} color="#fd4a12" />
+                )}
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      </BottomPaper>
+    </>
+  )
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
