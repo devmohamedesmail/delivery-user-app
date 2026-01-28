@@ -8,8 +8,8 @@ import useFetch from '@/hooks/useFetch'
 import Loading from '@/components/ui/loading'
 import { View, Text, FlatList } from 'react-native'
 import NoStores from '@/components/screens/stores/no-stores'
-import StoreItem from '@/components/screens/stores/store-item'
 import StoresHeader from '@/components/screens/stores/stores-header'
+import StoreCard from '@/components/screens/stores/store-card'
 
 export default function Stores() {
     const { storeType } = useLocalSearchParams();
@@ -37,6 +37,8 @@ export default function Stores() {
                 parsedStoreType={parsedStoreType}
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery} />
+
+
             {loading ? <Loading /> :
                 <View>
                     {filteredStores && filteredStores.length > 0 ? (
@@ -44,7 +46,7 @@ export default function Stores() {
                             data={filteredStores}
                             numColumns={2}
                             keyExtractor={(item) => item.id.toString()}
-                            renderItem={({ item }) => <StoreItem item={item} />}
+                            renderItem={({ item }) => <StoreCard item={item} />}
 
                             columnWrapperStyle={{ gap: 1 }}
                             contentContainerStyle={{

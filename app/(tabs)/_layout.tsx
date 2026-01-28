@@ -42,7 +42,20 @@ export default function Layout() {
                     ),
                 }}
             />
+            <Tabs.Screen
+                name="stores/index"
+                options={{ href: null }}
+            />
 
+            <Tabs.Screen
+                name="stores/products/index"
+                options={{ href: null }}
+            />
+
+            <Tabs.Screen
+                name="stores/reviews/index"
+                options={{ href: null }}
+            />
         </Tabs>
     )
 }

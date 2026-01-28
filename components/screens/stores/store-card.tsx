@@ -27,8 +27,8 @@ interface StoreItem {
   total_reviews: number;
 }
 
-export default function StoreItem({ item }: { item: StoreItem }) {
-  const {t}=useTranslation()
+export default function StoreCard({ item }: { item: StoreItem }) {
+  const { t } = useTranslation()
   const router = useRouter();
 
 
@@ -42,58 +42,47 @@ export default function StoreItem({ item }: { item: StoreItem }) {
         })
 
       }}
-      className='m-2 flex-1'
+      className='m-2 flex-1 overflow-hidden'
     >
       <View
-        className='bg-white rounded-2xl overflow-hidden'
-        style={{
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 8,
-          elevation: 1,
-        }}
+        className=' rounded-2xl overflow-hidden bg-white dark:bg-card-dark'
       >
-        <View className='w-full h-48  p-2' >
+        <View className='w-full h-48  ' >
           <Image source={{ uri: item.logo }} className='w-full h-full rounded-2xl' resizeMode='cover' />
         </View>
 
-        <View className='pt-10 px-4 pb-4'>
-          {/* Name and Rating */}
-          <View className='flex-row items-start justify-between mb-2'>
-            <View className='flex-1 pr-2'>
-              <Text className='text-lg font-bold text-gray-800' numberOfLines={1}>
-                {item.name}
-              </Text>
-              <View className='flex-row items-center mt-1'>
-                <Ionicons name="location-outline" size={14} color="#6b7280" />
-                <Text className='text-xs text-gray-500 ml-1' numberOfLines={1}>
-                  {item.address}
-                </Text>
-              </View>
-            </View>
+        <View className='px-4 pb-4'>
 
-          </View>
+          <Text className='text-xl mt-3 font-extrabold text-black text-center dark:text-white' numberOfLines={1}>
+            {item.name}
+          </Text>
 
 
-          <View className=''>
-            <View className='bg-orange-50 rounded-full px-3 py-1 flex-row items-center'>
+          <View className='flex-row items-center justify-between mt-2'>
+            <View className='flex flex-row items-center'>
               <Ionicons name="star" size={14} color="#fd4a12" />
               <Text className='text-sm font-bold ml-1' style={{ color: '#fd4a12' }}>
                 {parseFloat(item.avg_rating).toFixed(1)}
               </Text>
             </View>
-            <View className='flex flex-row items-center mt-2'>
-              <Text className='text-xs'>
-               
+
+
+
+            <View className='flex flex-row items-center '>
+              <Text className='text-xs text-black dark:text-white'>
+
                 ( {item.total_reviews} )
               </Text>
-              <Text className='ml-1 text-gray-500 text-xs'>
+              <Text className='ml-1 text-black dark:text-white text-xs'>
                 {t('stores.reviews')}
               </Text>
             </View>
+
+
           </View>
-          {/* Info Row */}
+
+
+         
 
         </View>
       </View>
