@@ -107,7 +107,8 @@
     "password_min": "يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل",
     "password_required": "كلمة المرور مطلوبة",
     "login_prompt": "يرجى تسجيل الدخول للوصول إلى حسابك.",
-    "login": "تسجيل الدخول"
+    "login": "تسجيل الدخول",
+    "email": " الايميل "
   },
   "home": {
     "restaurants": "المطاعم",
@@ -220,6 +221,7 @@
     "reviews": " تقييمات "
   },
   "account": {
+    "title": " الحساب ",
     "switchLanguage": "تبديل اللغة",
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج",
@@ -230,7 +232,11 @@
     "orderHistory": " تاريخ الطلبات ",
     "privacyPolicy": "سياسة الخصوصية",
     "termsOfService": "شروط الخدمة",
-    "helpSupport": "المساعدة والدعم"
+    "helpSupport": "المساعدة والدعم",
+    "loginPromptTitle": "مرحباً!",
+    "loginPromptMessage": "سجل دخولك للوصول إلى ميزات حصرية وتجربة شخصية",
+    "signInButton": "تسجيل الدخول",
+    "createAccountButton": "إنشاء حساب"
   },
   "navigation": {
     "home": "الرئيسية",

@@ -34,9 +34,9 @@ export default function Input({ label, placeholder, value, onChangeText, keyboar
         className={`mb-2 mx-4 ${i18n.language === "ar" ? 'text-right' : 'text-left'}`}>{label}
       </Text>
 
-      <View className={`flex-row items-center border border-gray-500 rounded-full px-2 ${inputFocused ? 'bg-gray-100 border-primary' : ''} ${i18n.language === "ar" ? 'flex-row-reverse' : ''} `}>
+      <View className={`flex-row items-center border border-gray-500 rounded-md px-2 ${inputFocused ? 'bg-gray-100 border-primary' : ''} ${i18n.language === "ar" ? 'flex-row-reverse' : ''} `}>
         <TextInput
-          className={`  ${i18n.language === "ar" ? 'text-right' : ''}  border-gray-300 p-2 rounded-md  flex-1 focus:border-primary py-4  focus:outline-none`}
+          className={`  ${i18n.language === "ar" ? 'text-right' : ''}  border-gray-300 p-2 rounded-md  flex-1 py-4  focus:outline-none placeholder:text-gray-400 placeholder:dark:text-white`}
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}

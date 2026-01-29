@@ -107,7 +107,8 @@
     "password_min": "Password must be at least 6 characters",
     "password_required": "Password is required",
     "login_prompt": "Please log in to access your account.",
-    "login": "Login"
+    "login": "Login",
+    "email": "E-mail"
   },
   "home": {
     "restaurants": "Restaurants",
@@ -220,6 +221,7 @@
     "reviews": "reviews"
   },
   "account": {
+    "title": "Account",
     "swithchlanguage": "Switch Language",
     "settings": "Settings",
     "logout": "Log Out",
@@ -230,7 +232,11 @@
     "orderHistory": "Order History",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "helpSupport": "Help & Support"
+    "helpSupport": "Help & Support",
+    "loginPromptTitle": "Welcome!",
+    "loginPromptMessage": "Sign in to unlock exclusive features and personalized experiences",
+    "signInButton": "Sign In",
+    "createAccountButton": "Create Account"
   },
   "navigation": {
     "home": "Home",

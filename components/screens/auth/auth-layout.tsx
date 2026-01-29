@@ -23,7 +23,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           showsVerticalScrollIndicator={false}
         >
           {/* Creative Header */}
-          <View className="pt-14 pb-8 px-5">
+          <View className="pt-14 pb-8 px-5 bg-black">
             {/* Back Button */}
             <View className="mb-3">
               <TouchableOpacity
