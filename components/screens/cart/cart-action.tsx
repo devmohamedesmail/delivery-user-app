@@ -51,7 +51,7 @@ export default function CartAction() {
           {/* Proceed to Checkout Button */}
           <View className="flex-1">
             <TouchableOpacity
-              onPress={() => router.push("/order")}
+              onPress={() => router.push("/checkout")}
               className="flex-1 flex-row items-center justify-center py-4  bg-primary dark:bg-primary-dark"
              
               activeOpacity={0.8}
