@@ -19,7 +19,7 @@ export default function CheckoutSuccessModal({
         <Modal isVisible={successModalVisible} animationIn="zoomIn" animationOut="zoomOut">
           <View className="bg-white p-6 rounded-lg py-10 items-center">
             <Image
-              source={require("../../assets/images/icons/success.png")}
+              source={require("../../../assets/images/icons/success.png")}
               style={{ width: 100, height: 100, marginBottom: 20 }}
             />
             <Text className="font-bold text-xl">{t("order.orderSuccesscreate")}</Text>

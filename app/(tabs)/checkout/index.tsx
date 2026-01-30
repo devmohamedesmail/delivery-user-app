@@ -106,7 +106,7 @@ export default function Checkout() {
       <Layout>
         <Header title={t('checkout.title')} />
         <ScrollView>
-          <View className='p-4'>
+          <View className='p-4 bg-white dark:bg-card-dark'>
             <Input
               label={t("order.phoneNumber")}
               placeholder={t("order.enterPhoneNumber")}

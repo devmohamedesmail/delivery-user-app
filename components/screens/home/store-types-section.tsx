@@ -63,7 +63,7 @@ export default function StoreTypesSection() {
     return (
         <View className='mb-6'>
             <Text
-                className={`text-xl font-extrabold py-5 text-white my-1 px-5 ${i18n.language === 'ar' ? 'text-right' : 'text-left'}`}    
+                className={`text-xl font-extrabold py-5 text-black dark:text-white my-1 px-5 ${i18n.language === 'ar' ? 'text-right' : 'text-left'}`}    
             >
                 {t('home.store_types_title')}
             </Text>

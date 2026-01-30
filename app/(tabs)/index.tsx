@@ -8,21 +8,25 @@ import { usePlace } from '@/hooks/usePlace'
 import SlideShow from '@/components/screens/home/side-show'
 import StoreTypesSection from '@/components/screens/home/store-types-section';
 import HomeHeader from '@/components/screens/home/home-header';
-import {View,Text,ScrollView,TouchableOpacity} from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import BottomPaper from '@/components/ui/bottom-paper';
 import { Ionicons } from '@expo/vector-icons'
+import HomeSearch from '@/components/screens/home/home-search';
 
 export default function Home() {
- const bottomSheetRef = useRef<BottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
   const { t } = useTranslation()
   const { places, selectedPlace, setSelectedPlace } = usePlace()
   return (
     <>
-    <Layout>
-      <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
-       <SlideShow />
-       <StoreTypesSection />
-    </Layout>
+      <Layout>
+        <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
+        <ScrollView>
+          <HomeSearch />
+          <SlideShow />
+          <StoreTypesSection />
+        </ScrollView>
+      </Layout>
 
 
       <BottomPaper ref={bottomSheetRef} snapPoints={['50%']}>

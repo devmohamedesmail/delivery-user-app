@@ -52,7 +52,10 @@
     "no_internet": "لا يوجد اتصال بالإنترنت",
     "no_internet_description": "يرجى التحقق من اتصال الواي فاي أو بيانات الهاتف",
     "connected": "متصل",
-    "internet_connection_restored": "تم استعادة الاتصال بالإنترنت"
+    "internet_connection_restored": "تم استعادة الاتصال بالإنترنت",
+    "search_products": " ابحث عن المنتجات  ",
+    "search_results": " نتائج البحث ",
+    "results_count": " عدد النتائج "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",
@@ -509,5 +512,8 @@
     "reviewMustBeLessThan": "يجب أن تكون المراجعة أقل من 500 حرف",
     "ratingIsRequired": "التقييم مطلوب",
     "reviewIsRequired": "تعليق المراجعة مطلوب"
+  },
+  "checkout": {
+    "title": "الدفع"
   }
 }

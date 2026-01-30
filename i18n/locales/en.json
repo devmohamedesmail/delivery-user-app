@@ -52,7 +52,10 @@
     "no_internet": "No Internet Connection",
     "no_internet_description": "Please check your WiFi or mobile data",
     "connected": "Connected",
-    "internet_connection_restored": "Internet connection restored"
+    "internet_connection_restored": "Internet connection restored",
+    "search_products": "Search products",
+    "search_results": "Search Results",
+    "results_count": "Results Count"
   },
   "auth": {
     "welcomeBack": "Welcome back!",
@@ -509,5 +512,8 @@
     "reviewMustBeLessThan": "Review must be less than 500 characters",
     "ratingIsRequired": "Rating is required",
     "reviewIsRequired": "Review comment is required"
+  },
+  "checkout": {
+    "title": "Checkout"
   }
 }

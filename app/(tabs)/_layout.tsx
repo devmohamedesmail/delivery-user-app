@@ -56,6 +56,16 @@ export default function Layout() {
                 name="stores/reviews/index"
                 options={{ href: null }}
             />
+
+            <Tabs.Screen
+                name="search/index"
+                options={{ href: null }}
+            />
+
+            <Tabs.Screen
+                name="checkout/index"
+                options={{ href: null }}
+            />
         </Tabs>
     )
 }
