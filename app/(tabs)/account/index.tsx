@@ -1,3 +1,4 @@
+import LogoutSection from '@/components/screens/account/logout-section'
 import OptionButton from '@/components/screens/account/option-button'
 import Header from '@/components/ui/header'
 import Layout from '@/components/ui/layout'
@@ -67,7 +68,7 @@ export default function index() {
                 </View>
                 <View className="flex-1">
                   <Text className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                    {t('account.email') || 'البريد الإلكتروني'}
+                    {t('auth.email')}
                   </Text>
                   <Text className="text-base text-gray-900 dark:text-white font-medium">
                     {user.email}
@@ -82,7 +83,7 @@ export default function index() {
                 </View>
                 <View className="flex-1">
                   <Text className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                    {t('account.phone') || 'رقم الهاتف'}
+                    {t('auth.phone')}
                   </Text>
                   <Text className="text-base text-gray-900 dark:text-white font-medium">
                     {user.phone}
@@ -189,6 +190,8 @@ export default function index() {
 
           />
         </View>
+
+        {user ? <LogoutSection /> : null}
       </ScrollView>
 
     </Layout>

@@ -239,7 +239,11 @@
     "loginPromptTitle": "مرحباً!",
     "loginPromptMessage": "سجل دخولك للوصول إلى ميزات حصرية وتجربة شخصية",
     "signInButton": "تسجيل الدخول",
-    "createAccountButton": "إنشاء حساب"
+    "createAccountButton": "إنشاء حساب",
+    "logout_confirm_title": "تأكيد تسجيل الخروج",
+    "logout_confirm_message": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
+    "logout_confirm": "تسجيل الخروج",
+    "logout_cancel": "إلغاء"
   },
   "navigation": {
     "home": "الرئيسية",

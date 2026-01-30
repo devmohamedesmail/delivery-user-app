@@ -239,7 +239,11 @@
     "loginPromptTitle": "Welcome!",
     "loginPromptMessage": "Sign in to unlock exclusive features and personalized experiences",
     "signInButton": "Sign In",
-    "createAccountButton": "Create Account"
+    "createAccountButton": "Create Account",
+    "logout_confirm_title": "Confirm Logout",
+    "logout_confirm_message": "Are you sure you want to log out of your account?",
+    "logout_confirm": "Logout",
+    "logout_cancel": "Cancel"
   },
   "navigation": {
     "home": "Home",
