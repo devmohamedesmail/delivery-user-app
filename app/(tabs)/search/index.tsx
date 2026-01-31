@@ -1,6 +1,8 @@
+import NoResult from '@/components/screens/search/no-result'
 import ResultCardItem from '@/components/screens/search/result-card-item'
 import Header from '@/components/ui/header'
 import Layout from '@/components/ui/layout'
+import Loading from '@/components/ui/loading'
 import { config } from '@/constants/config'
 import { usePlace } from '@/hooks/usePlace'
 import { Ionicons } from '@expo/vector-icons'
@@ -108,15 +110,7 @@ export default function Search() {
 
         if (searchQuery && products.length === 0) {
             return (
-                <View className="flex-1 items-center justify-center py-20">
-                    <Ionicons name="search-outline" size={64} color="#9ca3af" />
-                    <Text className="text-gray-500 dark:text-gray-400 text-center mt-4 text-base">
-                        {t('no_results') || 'لا توجد نتائج'}
-                    </Text>
-                    <Text className="text-gray-400 dark:text-gray-500 text-center mt-2 text-sm">
-                        {t('try_different_search') || 'جرب البحث بكلمات مختلفة'}
-                    </Text>
-                </View>
+                <NoResult />
             )
         }
 
@@ -170,12 +164,13 @@ export default function Search() {
 
                 {/* Loading State */}
                 {loading && (
-                    <View className="flex-1 items-center justify-center">
-                        <ActivityIndicator size="large" color="#fd4a12" />
-                        <Text className="text-gray-500 dark:text-gray-400 mt-4">
-                            {t('searching') || 'جاري البحث...'}
-                        </Text>
-                    </View>
+                    // <View className="flex-1 items-center justify-center">
+                    //     <ActivityIndicator size="large" color="#fd4a12" />
+                    //     <Text className="text-gray-500 dark:text-gray-400 mt-4">
+                    //         {t('searching') || 'جاري البحث...'}
+                    //     </Text>
+                    // </View>
+                    <Loading />
                 )}
 
                 {/* Results List */}

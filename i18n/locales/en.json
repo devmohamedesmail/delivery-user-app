@@ -55,7 +55,9 @@
     "internet_connection_restored": "Internet connection restored",
     "search_products": "Search products",
     "search_results": "Search Results",
-    "results_count": "Results Count"
+    "results_count": "Results Count",
+    "no_results": "No Results",
+    "try_different_search": "Try a different search or browse categories"
   },
   "auth": {
     "welcomeBack": "Welcome back!",

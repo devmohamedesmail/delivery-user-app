@@ -19,6 +19,7 @@ export default function HeaderIcon({ count, icon, onPress }: HeaderIconProps) {
                 </View>
             )}
         </View>
+       
     )
 
 }

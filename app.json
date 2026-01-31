@@ -50,11 +50,11 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      "expo-localization",
-      "expo-location",
-      "expo-font",
-      "expo-web-browser"
+      "expo-router"
+      // "expo-localization",
+      // "expo-location",
+      // "expo-font",
+      // "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

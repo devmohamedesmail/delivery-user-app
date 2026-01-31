@@ -147,7 +147,7 @@ export default function Loading({
 
   return (
     <Animated.View 
-      className="items-center justify-center"
+      className="items-center justify-center mt-44"
       style={{
         transform: [{ scale: scaleValue }],
         opacity: fadeValue,

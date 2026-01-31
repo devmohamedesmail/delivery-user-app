@@ -1,2 +1,0 @@
-DEFAULT: "#FFFFFF",
-          dark: "#0F172A",

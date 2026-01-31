@@ -21,7 +21,7 @@ export default function LogoutSection() {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false)
     
-    console.log(auth?.token)
+    
 
 
     const formik = useFormik({

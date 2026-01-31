@@ -12,9 +12,6 @@ interface SettingItemProps {
     onValueChange?: (value: boolean) => void;
 }
 export default function OptionButton({ onPress, icon, type, title, value, onValueChange }: SettingItemProps) {
-    const { theme } = useTheme();
-    console.log(theme);
-
     return (
         <TouchableOpacity
             onPress={type === "navigation" ? onPress : undefined}
