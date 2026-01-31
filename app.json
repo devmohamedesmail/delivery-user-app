@@ -2,7 +2,7 @@
   "expo": {
     "name": " توصيلة ",
     "slug": "tawsila-app",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "tawsila",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.10",
+      "buildNumber": "1.0.11",
       "bundleIdentifier": "com.dev.mohamed.esmail.tawsilaapp",
       "config": {
         "googleMapsApiKey": "AIzaSyCWrI-BwVYZE6D7wzFCVeEuaKr6VR-6FGI"
@@ -32,7 +32,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.dev.mohamed.esmail.tawsilaapp",
-      "versionCode": 10,
+      "versionCode": 11,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",

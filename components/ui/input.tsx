@@ -31,7 +31,7 @@ export default function Input({ label, placeholder, value, onChangeText, keyboar
   return (
     <View className='mb-3 '>
       <Text
-        className={`mb-2 mx-4 ${i18n.language === "ar" ? 'text-right' : 'text-left'}`}>{label}
+        className={`mb-2 mx-4 text-black dark:text-white ${i18n.language === "ar" ? 'text-right' : 'text-left'}`}>{label}
       </Text>
 
       <View className={`flex-row items-center border border-gray-500 rounded-md px-2 ${inputFocused ? 'bg-gray-100 border-primary' : ''} ${i18n.language === "ar" ? 'flex-row-reverse' : ''} `}>
@@ -49,7 +49,7 @@ export default function Input({ label, placeholder, value, onChangeText, keyboar
         />
         {isPassword && (
           <TouchableOpacity className={` text-gray-400`} onPress={togglePasswordVisibility}>
-            <Text>{isPasswordVisible ? <Entypo name="eye-with-line" size={24} color="black" /> : <Entypo name="eye" size={24} color="black" />}</Text>
+            <Text>{isPasswordVisible ? <Entypo name="eye-with-line" className='text-black dark:text-white' size={24} color="black" /> : <Entypo name="eye" className='text-black dark:text-white' size={24} color="black" />}</Text>
           </TouchableOpacity>
         )}
       </View>

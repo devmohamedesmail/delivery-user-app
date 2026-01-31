@@ -243,7 +243,15 @@
     "logout_confirm_title": "Confirm Logout",
     "logout_confirm_message": "Are you sure you want to log out of your account?",
     "logout_confirm": "Logout",
-    "logout_cancel": "Cancel"
+    "logout_cancel": "Cancel",
+    "delete_confirm_title": "Confirm Delete Account",
+    "delete_confirm_message": "Are you sure you want to delete your account?",
+    "delete_confirm": "Delete Account",
+    "delete_cancel": "Cancel",
+    "delete_account_success": "Account deleted successfully",
+    "delete_account_failed": "Failed to delete account",
+    "password_mismatch": "Password mismatch",
+    "password_incorrect": "Password incorrect"
   },
   "navigation": {
     "home": "Home",
