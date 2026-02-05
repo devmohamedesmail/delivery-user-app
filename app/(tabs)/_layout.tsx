@@ -6,7 +6,21 @@ import colors from '@/constants/colors';
 export default function Layout() {
     const totalItems = useAppSelector(selectCartTotalItems);
     return (
-        <Tabs screenOptions={{ headerShown: false }}>
+        <Tabs
+
+
+            screenOptions={{
+                headerShown: false,
+                tabBarActiveTintColor: colors.light.tint, // active tab color
+                tabBarInactiveTintColor: 'gray',
+            }}>
+
+
+
+
+
+
+
             <Tabs.Screen name="index" options={{
                 title: 'Home',
                 tabBarIcon: ({ color, size }) => (

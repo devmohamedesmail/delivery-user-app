@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -16,54 +16,28 @@ export default function EmptyCart() {
 
     return (
         <View className="flex-1 justify-center items-center px-8">
-            {/* Decorative Circle Background */}
             <View
-                className="absolute w-80 h-80 rounded-full opacity-30"
-
-            />
-
-            {/* Cart Icon with Animation Effect */}
-            <View
-                className="w-40 h-40 items-center justify-center mb-8 rounded-full shadow-md"
-
-            >
+                className="w-40 h-40 items-center justify-center mb-8 rounded-full shadow-md bg-primary">
                 <Ionicons
                     name="cart-outline"
                     size={80}
-                    color={colorScheme ? '#4b5563' : '#9ca3af'}
-                />
-                {/* Small emoji badge */}
-                <View
-                    className="absolute -top-2 -right-2 w-12 h-12 rounded-full items-center justify-center shadow-lg"
-                   
-                >
-                    <Text className="text-2xl text-white">🛒</Text>
-                </View>
+                    color={colorScheme === 'dark' ? '#fff' : '#fff'}
+                />    
             </View>
 
-            {/* Title */}
-            <Text
-                className="text-3xl font-extrabold mb-3 text-center"
-                
-            >
+            <Text className="text-3xl font-extrabold mb-3 text-center text-black dark:text-white">
                 {t('cart.title')}
             </Text>
 
-            {/* Description */}
-            <Text
-                className="text-base text-center mb-8 px-4"
-                
-            >
+            <Text className="text-base text-center mb-8 px-4 text-black dark:text-white">
                 {t('cart.description_empty')}
             </Text>
 
-            {/* Action Buttons */}
             <View className="w-full gap-3">
-                {/* Primary Button - Browse Menu */}
-                <TouchableOpacity
+               
+                <Pressable
                     onPress={() => router.push('/')}
-                    activeOpacity={0.8}
-                    className="px-8 py-4 rounded-2xl shadow-lg"
+                    className="px-8 py-4 rounded-2xl shadow-lg bg-primary"
                     
                 >
                     <View className="flex-row items-center justify-center">
@@ -73,7 +47,7 @@ export default function EmptyCart() {
                         </Text>
                         <Ionicons name="arrow-forward" size={20} color="white" style={{ marginLeft: 8 }} />
                     </View>
-                </TouchableOpacity>
+                </Pressable>
 
               
                 {/* <TouchableOpacity

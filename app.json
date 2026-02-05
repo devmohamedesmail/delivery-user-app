@@ -2,7 +2,7 @@
   "expo": {
     "name": " توصيلة ",
     "slug": "tawsila-app",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "tawsila",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.11",
+      "buildNumber": "1.0.12",
       "bundleIdentifier": "com.dev.mohamed.esmail.tawsilaapp",
       "config": {
         "googleMapsApiKey": "AIzaSyCWrI-BwVYZE6D7wzFCVeEuaKr6VR-6FGI"
@@ -32,7 +32,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.dev.mohamed.esmail.tawsilaapp",
-      "versionCode": 11,
+      "versionCode": 12,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
@@ -50,11 +50,11 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
-      // "expo-localization",
-      // "expo-location",
-      // "expo-font",
-      // "expo-web-browser"
+      "expo-router",
+      "expo-localization",
+      "expo-location",
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

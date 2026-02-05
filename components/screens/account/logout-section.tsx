@@ -62,7 +62,7 @@ export default function LogoutSection() {
 
     const handleConfirmLogout = async () => {
         setIsModalVisible(false)
-       await logout()
+        await logout()
         router.replace('/auth/login')
     }
 

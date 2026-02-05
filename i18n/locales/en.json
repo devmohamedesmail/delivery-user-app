@@ -57,7 +57,11 @@
     "search_results": "Search Results",
     "results_count": "Results Count",
     "no_results": "No Results",
-    "try_different_search": "Try a different search or browse categories"
+    "try_different_search": "Try a different search or browse categories",
+    "uploading": "Uploading...",
+    "downloading": "Downloading...",
+    "processing": "Processing..."
+    
   },
   "auth": {
     "welcomeBack": "Welcome back!",
@@ -300,7 +304,7 @@
     "selectAttributeError": "Please select an option first",
     "confirmAdd": "Add to Cart",
     "inCart": "In Cart",
-    "description_empty": "Your cart is waiting to be filled with delicious items! 🍽️",
+    "description_empty": "Your cart is waiting to be filled with delicious items!",
     "view_offers": "View Special Offers"
   },
   "wishlist": {
