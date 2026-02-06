@@ -532,6 +532,8 @@
     "reviewIsRequired": "Review comment is required"
   },
   "checkout": {
-    "title": "Checkout"
+    "title": "Checkout",
+    "items": "items",
+    "subtotal":" Subtotal "
   }
 }

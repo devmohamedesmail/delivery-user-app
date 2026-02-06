@@ -13,10 +13,11 @@ export default function CheckoutSummery({selectedArea}: {selectedArea: any}) {
   return (
        <View className="bg-white mx-4 mt-4 rounded-xl p-4 shadow-sm">
           <Text className={`text-xl  text-black mb-4 text-center font-extrabold `}> {t("order.orderSummary")}</Text>
+
+
           <View className={`flex-row justify-between items-center mb-2 ${i18n.language === "ar" ? " flex-row-reverse" : ""}`}>
-            <Text className="text-gray-600"> {t("order.subtotal")} ({totalItems} items)</Text>
-            <Text className="font-semibold text-gray-900"> {config.CurrencySymbol} {totalPrice.toFixed(2)}
-            </Text>
+            <Text className="text-gray-600"> {t("checkout.subtotal")} ({totalItems} {t("checkout.items")})</Text>
+            <Text className="font-semibold text-gray-900"> {config.CurrencySymbol} {totalPrice.toFixed(2)}</Text>
           </View>
 
           <View className={`flex-row justify-between items-center mb-2 ${i18n.language === "ar" ? " flex-row-reverse" : ""}`}>
@@ -34,9 +35,8 @@ export default function CheckoutSummery({selectedArea}: {selectedArea: any}) {
                 {t("order.total")}
               </Text>
               <Text className="text-lg font-bold text-gray-900">
-                {config.CurrencySymbol}{" "}
-                {Number(cart.store.delivery_fee) +
-                  Number(totalPrice.toFixed(2))}
+                {config.CurrencySymbol}{" "} {" "} 
+                {Number(selectedArea?.price) + Number(totalPrice.toFixed(2))}
               </Text>
             </View>
           </View>

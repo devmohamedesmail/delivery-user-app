@@ -531,6 +531,8 @@
     "reviewIsRequired": "تعليق المراجعة مطلوب"
   },
   "checkout": {
-    "title": "الدفع"
+    "title": "الدفع",
+    "items": "  عناصر  ",
+    "subtotal": " مصاريف الطلب "
   }
 }

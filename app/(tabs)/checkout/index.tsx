@@ -45,6 +45,9 @@ export default function Checkout() {
 
 
 
+
+
+
   const formik = useFormik({
     initialValues: {
       phone: "",
@@ -57,7 +60,6 @@ export default function Checkout() {
         .min(6, t("order.phoneMin")),
       address: Yup.string()
         .required(t("order.addressRequired"))
-        .min(6, t("order.addressMin")),
     }),
 
     onSubmit: async (values) => {
@@ -73,15 +75,20 @@ export default function Checkout() {
         }
 
         const response = await axios.post(`${config.URL}/orders/create`, {
-          user_id: auth?.user?.id || 0,
+          // user_id: auth?.user?.id || 0,
           store_id: cart.store.id,
           order: cartItems.map((item) => ({
-            id: parseInt(item.id),
+            id: item.id,
             name: item.name,
+            description: item.description,
+            image: item.image,
             quantity: item.quantity,
-            price: item.selectedAttribute ? item.selectedAttribute.price : item.price,
+            price: item.price,
+            selectedAttribute: item.selectedAttribute,
+            store_id: item.store_id,
+            store_name: item.store_name,
           })),
-          total_price: Number(cart.store.delivery_fee) + Number(totalPrice.toFixed(2)),
+          total_price: Number(selectedArea?.price) + Number(totalPrice.toFixed(2)),
           delivery_address: values.address,
           phone: values.phone,
         });
@@ -90,6 +97,7 @@ export default function Checkout() {
         setSuccessModalVisible(true);
       } catch (error) {
         setLoading(false);
+        console.log(error);
         Toast.show({
           type: "error",
           text1: t("order.orderErrorcreate"),
@@ -132,6 +140,12 @@ export default function Checkout() {
               <AntDesign name="down" size={16} color="white" />
             </TouchableOpacity>
 
+            {formik.touched.address && formik.errors.address ? (
+              <Text className="text-red-500 text-sm mt-1">
+                {formik.errors.address}
+              </Text>
+            ) : null}
+
 
 
 
@@ -152,21 +166,12 @@ export default function Checkout() {
           className="bg-white rounded-t-3xl w-full"
 
         >
+
+          <Text className="text-xl font-bold text-center text-gray-800">
+            {t("order.selectyourArea")}
+          </Text>
           {/* Modal Header */}
-          <View className="border-b border-gray-100 px-6 pt-5 pb-4">
-            <View className="flex-row items-center justify-between mb-1">
-              <Text className="text-xl font-bold text-gray-800">
-                {t("order.selectyourArea")}
-              </Text>
-              <TouchableOpacity
-                onPress={() => setModalVisible(false)}
-                className="bg-gray-100 w-9 h-9 rounded-full flex items-center justify-center active:bg-gray-200"
-              >
-                <AntDesign name="close" size={16} color="#374151" />
-              </TouchableOpacity>
-            </View>
-            <View className="w-12 h-1 bg-gray-300 rounded-full self-center mt-1" />
-          </View>
+
 
           {/* Search Input */}
           <View className="px-6 pt-4">
