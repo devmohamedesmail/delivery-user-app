@@ -8,10 +8,11 @@ import { usePlace } from '@/hooks/usePlace'
 import SlideShow from '@/components/screens/home/side-show'
 import StoreTypesSection from '@/components/screens/home/store-types-section';
 import HomeHeader from '@/components/screens/home/home-header';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Pressable } from 'react-native'
 import BottomPaper from '@/components/ui/bottom-paper';
 import { Ionicons } from '@expo/vector-icons'
 import HomeSearch from '@/components/screens/home/home-search';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -23,6 +24,15 @@ export default function Home() {
         <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
         <ScrollView>
           <HomeSearch />
+          {/* <Pressable
+            onPress={async () => {
+              await AsyncStorage.removeItem("introModalTime");
+              alert("Modal storage reset! Reload the app.");
+            }}
+            className="bg-red-500 p-3 rounded-xl mt-4"
+          >
+            <Text className="text-white text-center">Reset Intro Modal</Text>
+          </Pressable> */}
           <SlideShow />
           <StoreTypesSection />
         </ScrollView>

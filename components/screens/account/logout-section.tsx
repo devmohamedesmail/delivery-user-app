@@ -1,12 +1,11 @@
 import colors from '@/constants/colors'
 import { useAuth } from '@/hooks/useAuth'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Pressable, Text, TouchableOpacity, View } from 'react-native'
 import Modal from 'react-native-modal'
-import OptionButton from './option-button'
 import Input from '@/components/ui/input'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -81,11 +80,11 @@ export default function LogoutSection() {
             <Pressable
                 onPress={handleLogoutPress}
 
-                className='bg-red-600 dark:bg-red-700 mx-4 mb-2 p-4 rounded-xl flex-row-reverse items-center justify-between'>
+                className='bg-red-600 dark:bg-red-700 mx-4 mb-2 p-4 rounded-xl flex-row-reverse items-center justify-center'>
                 <View>
                     <Text className='text-white font-semibold text-base'>{t("account.logout")}</Text>
                 </View>
-                <View>
+                <View className='mx-2'>
                     <Ionicons name="log-out-outline" size={24} color="#ffffff" />
                 </View>
             </Pressable>
@@ -94,11 +93,11 @@ export default function LogoutSection() {
             <Pressable
                 onPress={handleDeletePress}
 
-                className='bg-red-800 dark:bg-red-900 mx-4 mb-2 p-4 rounded-xl flex-row-reverse items-center justify-between'>
+                className='bg-red-800 dark:bg-red-900 mx-4 mb-2 p-4 rounded-xl flex-row-reverse items-center justify-center'>
                 <View>
                     <Text className='text-white font-semibold text-base'>{t("account.logout")}</Text>
                 </View>
-                <View>
+                <View className='mx-2'>
                     <Ionicons name="trash" size={24} color="#ffffff" />
                 </View>
             </Pressable>

@@ -27,7 +27,7 @@ export default function SlideShow() {
   if (!data || data.length === 0) return null
 
   return (
-    <View className='px-3 my-6'>
+    <View className='px-3 '>
       <View style={{ height: 200 }}>
         <Swiper
           autoplay

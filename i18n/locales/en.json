@@ -61,7 +61,6 @@
     "uploading": "Uploading...",
     "downloading": "Downloading...",
     "processing": "Processing..."
-    
   },
   "auth": {
     "welcomeBack": "Welcome back!",
@@ -534,6 +533,21 @@
   "checkout": {
     "title": "Checkout",
     "items": "items",
-    "subtotal":" Subtotal "
+    "subtotal": " Subtotal "
+  },
+  "introModal": {
+    "title": "Discover Amazing Deals! 🎉",
+    "subtitle": "Explore exclusive offers and popular restaurants near you",
+    "specialOffers": "Special Offers",
+    "popularRestaurants": "Popular Restaurants",
+    "viewOffers": "View All Offers",
+    "exploreRestaurants": "Explore Restaurants",
+    "getStarted": "Get Started",
+    "skip": "Skip",
+    "off": "OFF",
+    "rating": "Rating",
+    "deliveryTime": "min",
+    "free": "Free",
+    "delivery": "Delivery"
   }
 }
