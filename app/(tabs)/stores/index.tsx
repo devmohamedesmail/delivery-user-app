@@ -50,7 +50,7 @@ export default function Stores() {
 
                             columnWrapperStyle={{ gap: 1 }}
                             contentContainerStyle={{
-                                paddingHorizontal: 16,
+                                paddingHorizontal: 5,
                                 paddingTop: 20,
                                 paddingBottom: 120,
                             }}

@@ -291,7 +291,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
                         className={`font-bold ${isSelected ? "text-white" : "text-primary"
                           }`}
                       >
-                        +{attrValue.price} {t("common.currency")}
+                         {attrValue.price} {t("common.currency")}
                       </Text>
                     </TouchableOpacity>
                   );

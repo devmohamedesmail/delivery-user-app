@@ -77,7 +77,7 @@ export default function Products() {
       {productsLoading ? (
         <Loading />
       ) : (
-        <View>
+        <View className='px-2 pb-52'>
           {filteredProducts.length === 0 ? (
             <NoProducts searchQuery={searchQuery} />
           ) : (

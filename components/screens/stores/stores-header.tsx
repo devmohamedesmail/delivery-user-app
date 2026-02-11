@@ -8,7 +8,6 @@ export default function StoresHeader({ parsedStoreType, searchQuery, setSearchQu
     const router = useRouter();
     return (
         <View
-
             className="px-5 pt-14 pb-6 bg-primary dark:bg-background-dark"
         >
             <View className="flex-row items-center justify-between mb-4">

@@ -2,6 +2,7 @@ import { useTheme } from '@/hooks/useTheme';
 import React from 'react'
 import { Switch, TouchableOpacity, View, Text } from 'react-native'
 import { Ionicons } from "@expo/vector-icons";
+import { useColorScheme } from 'nativewind';
 
 interface SettingItemProps {
     onPress?: () => void;
@@ -12,6 +13,8 @@ interface SettingItemProps {
     onValueChange?: (value: boolean) => void;
 }
 export default function OptionButton({ onPress, icon, type, title, value, onValueChange }: SettingItemProps) {
+   const { colorScheme } = useColorScheme()
+
     return (
         <TouchableOpacity
             onPress={type === "navigation" ? onPress : undefined}
@@ -43,7 +46,7 @@ export default function OptionButton({ onPress, icon, type, title, value, onValu
                 />
             ) : (
                 <Ionicons name="chevron-back" size={20}
-                // color={isDark ? '#9ca3af' : '#9ca3af'}
+                color={colorScheme === 'dark' ? '#fff' : '#000'}
                 />
             )}
         </TouchableOpacity>
