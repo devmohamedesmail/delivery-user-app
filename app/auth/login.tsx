@@ -16,6 +16,7 @@ import Toast from "react-native-toast-message";
 import AuthLayout from "@/components/screens/auth/auth-layout";
 import colors from "@/constants/colors";
 import Layout from "@/components/ui/layout";
+import TabButton from "@/components/ui/tab-button";
 
 export default function Login() {
   const { t, i18n } = useTranslation();
@@ -96,41 +97,25 @@ export default function Login() {
     <Layout>
       <AuthLayout>
         <View className="flex-1 px-6 -mt-4 pt-8 rounded-t-3xl" >
-          <View className="space-y-4">
+          <View className="space-y-4 pb-20">
             {/* Login Method Toggle */}
             <View className="flex-row mb-4 bg-gray-100 rounded-xl p-1" >
-              <TouchableOpacity
+             
+              <TabButton
+                title={t("auth.email")}
+                value="email"
+                activeValue={loginMethod}
                 onPress={() => setLoginMethod("email")}
-                className="flex-1 py-3 rounded-lg items-center"
-                style={{
-                  backgroundColor: loginMethod === "email" ? colors.light.tint : "transparent",
-                }}
-              >
-                <Text
-                  className="font-bold"
-                  style={{
-                    color: loginMethod === "email" ? "#fff" : colors.light.text,
-                  }}
-                >
-                  {t("auth.email")}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              />
+              
+             
+
+              <TabButton
+                title={t("auth.phone")}
+                value="phone"
+                activeValue={loginMethod}
                 onPress={() => setLoginMethod("phone")}
-                className="flex-1 py-3 rounded-lg items-center"
-                style={{
-                  backgroundColor: loginMethod === "phone" ? colors.light.tint : "transparent",
-                }}
-              >
-                <Text
-                  className="font-bold"
-                  style={{
-                    color: loginMethod === "phone" ? "#fff" : colors.light.text,
-                  }}
-                >
-                  {t("auth.phone")}
-                </Text>
-              </TouchableOpacity>
+              />
             </View>
 
             {/* Email/Phone Input */}
@@ -188,10 +173,7 @@ export default function Login() {
               >
                 <View
                   className={`w-5 h-5 border-2 rounded mr-2 items-center justify-center ${rememberMe ? "border-secondary" : ""}`}
-                // style={{
-                //   borderColor: rememberMe ? colors.tint : (theme === 'dark' ? '#4B5563' : '#D1D5DB'),
-                //   backgroundColor: rememberMe ? colors.tint : "transparent",
-                // }}
+                
                 >
                   {rememberMe && (
                     <Ionicons name="checkmark" size={12} color="white" />
@@ -199,7 +181,7 @@ export default function Login() {
                 </View>
                 <Text
                   style={{
-                    fontFamily: "Cairo_400Regular",
+                   
                     color: colors.light.text
                   }}
                 >
@@ -217,6 +199,7 @@ export default function Login() {
             {/* Login Button */}
             <View className="mt-8">
               <Button
+                size='lg'
                 title={isLoading ? t("auth.signingIn") : t("auth.signIn")}
                 onPress={formik.handleSubmit}
                 disabled={

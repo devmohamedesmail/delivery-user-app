@@ -12,6 +12,7 @@ import { useRouter } from 'expo-router'
 import colors from '@/constants/colors'
 import Layout from '@/components/ui/layout'
 import AuthLayout from '@/components/screens/auth/auth-layout'
+import TabButton from '@/components/ui/tab-button'
 
 interface RegisterFormValues {
     name: string
@@ -104,41 +105,24 @@ export default function Register() {
     return (
         <Layout>
             <AuthLayout>
-                <View className="flex-1 -mt-4 pt-8 rounded-t-3xl px-6" >
+                <View className="flex-1 -mt-4 pt-8 rounded-t-3xl px-6 pb-20" >
                     {/* Registration Method Toggle */}
                     <View className="flex-row mb-4 rounded-xl p-1 bg-white" >
-                        <TouchableOpacity
+                        
+                        <TabButton
+                            title={t("auth.email")}
+                            value="email"
+                            activeValue={registerMethod}
                             onPress={() => setRegisterMethod("email")}
-                            className="flex-1 py-3 rounded-lg items-center"
-                            style={{
-                                backgroundColor: registerMethod === "email" ? colors.light.tint : "transparent",
-                            }}
-                        >
-                            <Text
-                                className="font-bold"
-                                style={{
-                                    color: registerMethod === "email" ? "#fff" : colors.light.text,
-                                }}
-                            >
-                                {t("auth.email")}
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        />
+                      
+
+                        <TabButton
+                            title={t("auth.phone")}
+                            value="phone"
+                            activeValue={registerMethod}
                             onPress={() => setRegisterMethod("phone")}
-                            className="flex-1 py-3 rounded-lg items-center"
-                            style={{
-                                backgroundColor: registerMethod === "phone" ? colors.light.tint : "transparent",
-                            }}
-                        >
-                            <Text
-                                className="font-bold"
-                                style={{
-                                    color: registerMethod === "phone" ? "#fff" : colors.light.text,
-                                }}
-                            >
-                                {t("auth.phone")}
-                            </Text>
-                        </TouchableOpacity>
+                        />
                     </View>
 
                     {/* Name Input */}
@@ -185,6 +169,7 @@ export default function Register() {
                     />
 
                     <Button
+                       size='lg'
                         title={isLoading ? t('auth.signingUp') : t('auth.signUp')}
                         onPress={() => formik.handleSubmit()}
                         disabled={
