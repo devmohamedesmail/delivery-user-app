@@ -17,6 +17,7 @@ import AuthLayout from "@/components/screens/auth/auth-layout";
 import colors from "@/constants/colors";
 import Layout from "@/components/ui/layout";
 import TabButton from "@/components/ui/tab-button";
+import SocialSection from "@/components/screens/auth/social-section";
 
 export default function Login() {
   const { t, i18n } = useTranslation();
@@ -223,7 +224,9 @@ export default function Login() {
             </View>
 
             {/* <GoogleButton /> */}
+            <SocialSection />
           </View>
+          
         </View>
       </AuthLayout>
     </Layout>

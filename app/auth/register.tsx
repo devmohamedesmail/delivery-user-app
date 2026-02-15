@@ -1,18 +1,17 @@
-import React, { useState, useContext } from 'react'
-import { View, Text, ScrollView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-import { useTranslation } from 'react-i18next'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import AuthLayout from '@/components/screens/auth/auth-layout'
+import SocialSection from '@/components/screens/auth/social-section'
 import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
-import { AuthContext } from '@/context/auth-provider'
-import Toast from 'react-native-toast-message'
-import { useRouter } from 'expo-router'
-import colors from '@/constants/colors'
 import Layout from '@/components/ui/layout'
-import AuthLayout from '@/components/screens/auth/auth-layout'
 import TabButton from '@/components/ui/tab-button'
+import { AuthContext } from '@/context/auth-provider'
+import { useRouter } from 'expo-router'
+import { useFormik } from 'formik'
+import React, { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Text, TouchableOpacity, View } from 'react-native'
+import Toast from 'react-native-toast-message'
+import * as Yup from 'yup'
 
 interface RegisterFormValues {
     name: string
@@ -108,14 +107,14 @@ export default function Register() {
                 <View className="flex-1 -mt-4 pt-8 rounded-t-3xl px-6 pb-20" >
                     {/* Registration Method Toggle */}
                     <View className="flex-row mb-4 rounded-xl p-1 bg-white" >
-                        
+
                         <TabButton
                             title={t("auth.email")}
                             value="email"
                             activeValue={registerMethod}
                             onPress={() => setRegisterMethod("email")}
                         />
-                      
+
 
                         <TabButton
                             title={t("auth.phone")}
@@ -169,7 +168,7 @@ export default function Register() {
                     />
 
                     <Button
-                       size='lg'
+                        size='lg'
                         title={isLoading ? t('auth.signingUp') : t('auth.signUp')}
                         onPress={() => formik.handleSubmit()}
                         disabled={
@@ -181,8 +180,10 @@ export default function Register() {
                         }
                     />
 
+                    <SocialSection />
+
                     {/* Terms and Sign In Link */}
-                    <View className="mb-6 mt-5">
+                    <View className="mb-6 mt-2">
                         <View className="flex-row justify-center items-center">
                             <Text className='text-black dark:text-white mx-2'>{t('auth.alreadyHaveAccount')} </Text>
                             <TouchableOpacity onPress={() => router.push('/auth/login')}>

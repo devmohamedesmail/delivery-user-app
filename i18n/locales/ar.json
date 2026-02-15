@@ -118,7 +118,10 @@
     "password_required": "كلمة المرور مطلوبة",
     "login_prompt": "يرجى تسجيل الدخول للوصول إلى حسابك.",
     "login": "تسجيل الدخول",
-    "email": " الايميل "
+    "email": " الايميل ",
+    "featureComingSoon": "قريباً",
+    "featureComingSoonDesc": "هذه الميزة قيد التطوير حالياً وستكون متاحة قريباً.",
+    "ok": "حسناً"
   },
   "home": {
     "restaurants": "المطاعم",

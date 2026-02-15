@@ -118,7 +118,10 @@
     "password_required": "Password is required",
     "login_prompt": "Please log in to access your account.",
     "login": "Login",
-    "email": "E-mail"
+    "email": "E-mail",
+    "featureComingSoon": "Coming Soon",
+    "featureComingSoonDesc": "This feature is currently under development and will be available soon.",
+    "ok": "OK"
   },
   "home": {
     "restaurants": "Restaurants",
