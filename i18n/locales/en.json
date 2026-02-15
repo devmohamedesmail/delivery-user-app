@@ -147,7 +147,13 @@
     "find_food_nearby": "Find food nearby",
     "store_types_title": "Your Neighborhood, Your Market",
     "noOffers": "No offers available",
-    "view_more": "View More"
+    "view_more": "View More",
+    "featured_stores": "Featured Stores",
+    "featured": "Featured",
+    "open_now": "Open Now",
+    "closed": "Closed",
+    "opens_at": "Opens at",
+    "min_delivery": "min"
   },
   "notFound": {
     "title": "Page Not Found",

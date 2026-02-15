@@ -147,7 +147,13 @@
     "find_food_nearby": "ابحث عن طعام بالقرب منك",
     "store_types_title": " كل اللي محتاجه قريب منك  ",
     "noOffers": "لا توجد عروض متاحة",
-    "view_more": " عرض المزيد "
+    "view_more": " عرض المزيد ",
+    "featured_stores": "المتاجر المميزة",
+    "featured": "مميز",
+    "open_now": "مفتوح الآن",
+    "closed": "مغلق",
+    "opens_at": "يفتح في",
+    "min_delivery": "دقيقة"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",

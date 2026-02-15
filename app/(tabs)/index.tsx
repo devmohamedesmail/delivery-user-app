@@ -13,6 +13,7 @@ import BottomPaper from '@/components/ui/bottom-paper';
 import { Ionicons } from '@expo/vector-icons'
 import HomeSearch from '@/components/screens/home/home-search';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import FeaturedStores from '@/components/screens/home/featured-stores';
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -32,9 +33,10 @@ export default function Home() {
             className="bg-red-500 p-3 rounded-xl mt-4"
           >
             <Text className="text-white text-center">Reset Intro Modal</Text>
-          </Pressable> */}
+          </Pressable>  */}
           <SlideShow />
           <StoreTypesSection />
+          <FeaturedStores />
         </ScrollView>
       </Layout>
 

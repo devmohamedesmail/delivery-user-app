@@ -3,22 +3,21 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { useAppSelector, selectCartTotalItems } from "@/store/hooks";
 import colors from '@/constants/colors';
+import { useColorScheme } from 'nativewind';
 export default function Layout() {
     const totalItems = useAppSelector(selectCartTotalItems);
+    const { colorScheme } = useColorScheme();
     return (
         <Tabs
-
-
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: colors.light.tint, // active tab color
                 tabBarInactiveTintColor: 'gray',
+                tabBarStyle: {
+                    backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background,
+
+                },
             }}>
-
-
-
-
-
 
 
             <Tabs.Screen name="index" options={{
@@ -78,6 +77,10 @@ export default function Layout() {
 
             <Tabs.Screen
                 name="checkout/index"
+                options={{ href: null }}
+            />
+            <Tabs.Screen
+                name="notifications/index"
                 options={{ href: null }}
             />
         </Tabs>
