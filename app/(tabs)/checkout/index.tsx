@@ -163,11 +163,11 @@ export default function Checkout() {
 
       <BottomPaper ref={bottomSheetRef} snapPoints={['50%']}>
         <View
-          className="bg-white rounded-t-3xl w-full"
+          className=" rounded-t-3xl w-full"
 
         >
 
-          <Text className="text-xl font-bold text-center text-gray-800">
+          <Text className="text-xl font-bold text-center text-black dark:text-white">
             {t("order.selectyourArea")}
           </Text>
           {/* Modal Header */}
@@ -217,7 +217,7 @@ export default function Checkout() {
                     <View className="w-10 h-10 bg-gray-100 rounded-full items-center justify-center mr-3">
                       <AntDesign name="environment" size={18} color="#6B7280" />
                     </View>
-                    <View className='flex flex-row justify-between flex-1'>
+                    <View className='flex flex-row justify-between text-black dark:text-white flex-1'>
                       <Text className={`text-base ${formik.values.address === area.name
                         ? 'font-semibold text-primary'
                         : 'font-medium text-gray-700'

@@ -14,6 +14,7 @@ import HomeSearch from '@/components/screens/home/home-search';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import FeaturedStores from '@/components/screens/home/featured-stores';
 import ResetPlaceButton from '@/components/ui/reset-place';
+import Search from '@/components/ui/search';
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -40,6 +41,7 @@ useEffect(() => {
         <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
         <ScrollView>
           <HomeSearch />
+          
           {/* <ResetPlaceButton /> */}
           <SlideShow />
           <StoreTypesSection />

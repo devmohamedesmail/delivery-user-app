@@ -1,3 +1,4 @@
+import HomeSearch from '@/components/screens/home/home-search'
 import NoResult from '@/components/screens/search/no-result'
 import ResultCardItem from '@/components/screens/search/result-card-item'
 import Header from '@/components/ui/header'
@@ -128,31 +129,7 @@ export default function Search() {
         <Layout>
             <Header title={t('common.search_results') } />
             <View className="flex-1 bg-background dark:bg-background-dark">
-                {/* Search Bar */}
-                <View className="px-4 py-3 bg-card dark:bg-card-dark border-b border-border dark:border-border-dark">
-                    <View className="bg-background dark:bg-background-dark rounded-2xl flex-row items-center px-4 py-3 border border-border dark:border-border-dark">
-                        <TouchableOpacity onPress={handleSearch}>
-                            <Ionicons name="search" size={22} color="#fd4a12" />
-                        </TouchableOpacity>
-                        <TextInput
-                            placeholder={t('search_products') || 'ابحث عن المنتجات...'}
-                            value={searchQuery}
-                            onChangeText={setSearchQuery}
-                            onSubmitEditing={handleSearch}
-                            returnKeyType="search"
-                            className={`flex-1 mx-3 text-base text-text dark:text-text-dark ${i18n.language === 'ar' ? 'text-right' : 'text-left'
-                                }`}
-                            cursorColor="#fd4a12"
-                            placeholderTextColor="#9ca3af"
-                        />
-                        {searchQuery.length > 0 && (
-                            <TouchableOpacity onPress={handleClear}>
-                                <Ionicons name="close-circle" size={22} color="#9ca3af" />
-                            </TouchableOpacity>
-                        )}
-                    </View>
-                    
-                </View>
+                <HomeSearch />
 
                 {/* Results Count */}
                 {!loading && products.length > 0 && (
@@ -165,12 +142,6 @@ export default function Search() {
 
                 {/* Loading State */}
                 {loading && (
-                    // <View className="flex-1 items-center justify-center">
-                    //     <ActivityIndicator size="large" color="#fd4a12" />
-                    //     <Text className="text-gray-500 dark:text-gray-400 mt-4">
-                    //         {t('searching') || 'جاري البحث...'}
-                    //     </Text>
-                    // </View>
                     <Loading />
                 )}
 
