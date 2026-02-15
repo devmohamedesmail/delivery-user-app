@@ -60,7 +60,9 @@
     "try_different_search": " جرب البحث بكلمات مختلفة ",
     "uploading": "جاري الرفع...",
     "downloading": "جاري التحميل...",
-    "processing": "جاري المعالجة..."
+    "processing": "جاري المعالجة...",
+    "cart": " عربة التسوق ",
+    "notifications": " الاشعارات  "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",

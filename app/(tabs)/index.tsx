@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import Layout from '@/components/ui/layout'
-import { useRef } from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useTranslation } from 'react-i18next'
 import { usePlace } from '@/hooks/usePlace'
@@ -14,26 +13,34 @@ import { Ionicons } from '@expo/vector-icons'
 import HomeSearch from '@/components/screens/home/home-search';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import FeaturedStores from '@/components/screens/home/featured-stores';
+import ResetPlaceButton from '@/components/ui/reset-place';
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const { t } = useTranslation()
   const { places, selectedPlace, setSelectedPlace } = usePlace()
+  
+
+useEffect(() => {
+  if (!selectedPlace) {
+    const timer = setTimeout(() => {
+      bottomSheetRef.current?.expand()
+      console.log("the bottom sheet is open")
+    }, 100) 
+
+    return () => clearTimeout(timer)
+  } else {
+    console.log("the bottom sheet is closed")
+  }
+}, [selectedPlace])
+ 
   return (
     <>
       <Layout>
         <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
         <ScrollView>
           <HomeSearch />
-          {/* <Pressable
-            onPress={async () => {
-              await AsyncStorage.removeItem("introModalTime");
-              alert("Modal storage reset! Reload the app.");
-            }}
-            className="bg-red-500 p-3 rounded-xl mt-4"
-          >
-            <Text className="text-white text-center">Reset Intro Modal</Text>
-          </Pressable>  */}
+          {/* <ResetPlaceButton /> */}
           <SlideShow />
           <StoreTypesSection />
           <FeaturedStores />
@@ -41,15 +48,15 @@ export default function Home() {
       </Layout>
 
 
-      <BottomPaper ref={bottomSheetRef} snapPoints={['50%']}>
+      <BottomPaper ref={bottomSheetRef} snapPoints={['60%']}>
         <View className="flex-1 px-5 pb-8">
-          <Text className="text-xl font-bold mb-4 text-center text-gray-800 arabic-font-bold mt-2">
-            {t("common.select_place") || "Select Delivery Location"}
+          <Text className="text-xl font-bold mb-4 text-center text-black dark:text-white arabic-font-bold mt-2">
+            {t("common.select_place")}
           </Text>
 
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
             {places.map((place) => (
-              <TouchableOpacity
+              <Pressable
                 key={place.id}
                 onPress={() => {
                   setSelectedPlace(place);
@@ -74,18 +81,14 @@ export default function Home() {
                       }`}>
                       {place.name}
                     </Text>
-                    {place.description && (
-                      <Text className="text-xs text-gray-500 text-left" numberOfLines={1}>
-                        {place.description}
-                      </Text>
-                    )}
+                    
                   </View>
                 </View>
 
                 {selectedPlace?.id === place.id && (
                   <Ionicons name="checkmark-circle" size={24} color="#fd4a12" />
                 )}
-              </TouchableOpacity>
+              </Pressable>
             ))}
           </ScrollView>
         </View>

@@ -60,7 +60,9 @@
     "try_different_search": "Try a different search or browse categories",
     "uploading": "Uploading...",
     "downloading": "Downloading...",
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "cart": "Cart",
+    "notifications": "Notifications"
   },
   "auth": {
     "welcomeBack": "Welcome back!",

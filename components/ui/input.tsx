@@ -1,60 +1,102 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import Entypo from '@expo/vector-icons/Entypo';
+import { Ionicons } from '@expo/vector-icons';
+import { useColorScheme } from 'nativewind';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-
-
-
-interface CustomInputProps {
+interface InputProps {
   label?: string
   placeholder?: string
-  value?: string
-  onChangeText?: (text: string) => void
+  value: string
+  onChangeText: (text: string) => void
   type?: 'text' | 'email' | 'password' | 'phone'
+  secureTextEntry?: boolean
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters'
+  icon?: keyof typeof Ionicons.glyphMap
   error?: string
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad',
-
-
+  editable?: boolean
 }
 
-export default function Input({ label, placeholder, value, onChangeText, keyboardType, error, type }: CustomInputProps) {
-  const {i18n } = useTranslation()
+export default function Input({
+  label,
+  placeholder,
+  value,
+  onChangeText,
+  type,
+  secureTextEntry = false,
+  keyboardType = 'default',
+  autoCapitalize = 'none',
+  icon,
+  error,
+  editable = true
+}: InputProps) {
+  const { i18n } = useTranslation()
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
-  const [inputFocused, setInputFocused] = useState(false)
-  const isPassword = type === 'password'
+  const [isFocused, setIsFocused] = useState(false)
+  const { colorScheme } = useColorScheme()
+  const isDark = colorScheme === 'dark'
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible)
-  }
+  // Support old 'type' prop for backward compatibility
+  const isPassword = type === 'password' || secureTextEntry
 
   return (
-    <View className='mb-3 '>
-      <Text
-        className={`mb-2 mx-4 text-black dark:text-white ${i18n.language === "ar" ? 'text-right' : 'text-left'}`}>{label}
-      </Text>
+    <View className="mb-4">
+      {/* Label */}
+      {label && (
+        <Text className={`mb-2 mx-1 text-base font-medium text-black dark:text-white ${i18n.language === "ar" ? 'text-right' : 'text-left'}`}>
+          {label}
+        </Text>
+      )}
 
-      <View className={`flex-row items-center border border-gray-500 rounded-md px-2 ${inputFocused ? 'bg-gray-100 border-primary' : ''} ${i18n.language === "ar" ? 'flex-row-reverse' : ''} `}>
+      {/* Input Container */}
+      <View
+        className={`flex-row items-center rounded-xl px-4 py-3 ${isDark ? 'bg-gray-800/50' : 'bg-gray-50'
+          } ${isFocused
+            ? 'border-2 border-primary'
+            : isDark
+              ? 'border border-gray-700'
+              : 'border border-gray-200'
+          } ${error ? 'border-red-500' : ''} ${i18n.language === "ar" ? 'flex-row-reverse' : ''}`}
+      >
+        {icon && (
+          <Ionicons
+            name={icon}
+            size={20}
+            color={isFocused ? '#fd4a12' : isDark ? '#9CA3AF' : '#6B7280'}
+            style={{ marginRight: i18n.language === "ar" ? 0 : 8, marginLeft: i18n.language === "ar" ? 8 : 0 }}
+          />
+        )}
         <TextInput
-          className={`  ${i18n.language === "ar" ? 'text-right' : ''}  border-gray-300 p-2 rounded-md  flex-1 py-4  focus:outline-none placeholder:text-gray-400 placeholder:dark:text-white`}
+          className={`flex-1 text-base ${isDark ? 'text-white' : 'text-gray-900'} ${i18n.language === "ar" ? 'text-right' : 'text-left'}`}
           placeholder={placeholder}
+          placeholderTextColor={isDark ? '#6B7280' : '#9CA3AF'}
           value={value}
           onChangeText={onChangeText}
-          keyboardType={keyboardType}
           secureTextEntry={isPassword && !isPasswordVisible}
-          onFocus={() => setInputFocused(true)}
-          onBlur={() => setInputFocused(false)}
-
-
+          keyboardType={keyboardType}
+          autoCapitalize={autoCapitalize}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          editable={editable}
         />
         {isPassword && (
-          <TouchableOpacity className={` text-gray-400`} onPress={togglePasswordVisibility}>
-            <Text>{isPasswordVisible ? <Entypo name="eye-with-line" className='text-black dark:text-white' size={24} color="black" /> : <Entypo name="eye" className='text-black dark:text-white' size={24} color="black" />}</Text>
+          <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+            <Ionicons
+              name={isPasswordVisible ? 'eye-off' : 'eye'}
+              size={20}
+              color={isDark ? '#9CA3AF' : '#6B7280'}
+            />
           </TouchableOpacity>
         )}
       </View>
 
-      {error && <Text className='text-red-500 mt-1'>{error}</Text>}
+      {/* Error Message */}
+      {error && (
+        <Text className={`text-red-500 text-sm mt-1 ml-1 ${i18n.language === "ar" ? 'text-right mr-1' : 'text-left'}`}>
+          {error}
+        </Text>
+      )}
     </View>
   )
 }

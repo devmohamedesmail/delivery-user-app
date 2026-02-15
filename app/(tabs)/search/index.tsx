@@ -151,6 +151,7 @@ export default function Search() {
                             </TouchableOpacity>
                         )}
                     </View>
+                    
                 </View>
 
                 {/* Results Count */}

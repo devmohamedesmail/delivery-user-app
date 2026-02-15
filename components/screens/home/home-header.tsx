@@ -18,10 +18,8 @@ export default function HomeHeader({ onOpenPlace }: { onOpenPlace: () => void })
 
   return (
     <View className="flex-row items-center justify-between px-4 pt-14 pb-2">
-
       <HeaderIcon icon={<EvilIcons name="bell" size={24} color="black" />} onPress={() => router.push("/(tabs)/notifications")} />
       <PlaceIcon onOpen={onOpenPlace} />
-
       <HeaderIcon count={totalItems} icon={<AntDesign name="shopping-cart" size={24} color="black" />} onPress={() => router.push("/(tabs)/cart")} />
     </View>
   )

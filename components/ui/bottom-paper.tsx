@@ -1,5 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { useColorScheme } from 'nativewind';
 
 
 
@@ -13,7 +14,7 @@ const BottomPaper = forwardRef<BottomSheet, BottomPaperProps>(
       const memoSnapPoints = useMemo(() => snapPoints, [snapPoints]);
      
       
-   
+   const {colorScheme}=useColorScheme();
 
     return (
        <BottomSheet
@@ -21,14 +22,10 @@ const BottomPaper = forwardRef<BottomSheet, BottomPaperProps>(
         index={-1}
         snapPoints={memoSnapPoints}
         enablePanDownToClose
-        // backgroundStyle={{
-        //   backgroundColor: activeColors.background,
-        // }}
-        // handleIndicatorStyle={{
-        //   backgroundColor: activeColors.tabIconDefault,
-        // }}
+        backgroundStyle={{ backgroundColor: colorScheme==="dark"?"black":"white" }}
+        handleIndicatorStyle={{backgroundColor: colorScheme==="dark"?"white":"black"}}
       >
-        <BottomSheetView style={{ flex: 1 }}>
+        <BottomSheetView style={{ flex: 1 }} >
           {children}
         </BottomSheetView>
       </BottomSheet>

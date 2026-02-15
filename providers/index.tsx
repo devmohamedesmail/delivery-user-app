@@ -1,5 +1,6 @@
 import AuthProvider from '@/context/auth-provider'
 import PlaceProvider from '@/context/place-provider'
+import SettingProvider from '@/context/setting-provider'
 import { ThemeProvider } from '@/context/theme-provider'
 import { ReduxProvider } from '@/store/ReduxProvider'
 import React from 'react'
@@ -12,10 +13,12 @@ export default function AppProviders({ children }: { children: React.ReactNode }
             <ThemeProvider>
                 <AuthProvider>
                     <PlaceProvider>
-                        <ReduxProvider>
-                            {children}
-                            <Toast />
-                        </ReduxProvider>
+                        <SettingProvider>
+                            <ReduxProvider>
+                                {children}
+                                <Toast />
+                            </ReduxProvider>
+                        </SettingProvider>
                     </PlaceProvider>
                 </AuthProvider>
             </ThemeProvider>

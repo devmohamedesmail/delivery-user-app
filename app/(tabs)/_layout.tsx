@@ -4,9 +4,11 @@ import { Ionicons } from '@expo/vector-icons'
 import { useAppSelector, selectCartTotalItems } from "@/store/hooks";
 import colors from '@/constants/colors';
 import { useColorScheme } from 'nativewind';
+import { useTranslation } from 'react-i18next';
 export default function Layout() {
     const totalItems = useAppSelector(selectCartTotalItems);
     const { colorScheme } = useColorScheme();
+    const { t } = useTranslation();
     return (
         <Tabs
             screenOptions={{
@@ -21,7 +23,7 @@ export default function Layout() {
 
 
             <Tabs.Screen name="index" options={{
-                title: 'Home',
+                title: t('common.home'),
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons name="home-outline" size={size} color={color} />
                 ),
@@ -31,7 +33,7 @@ export default function Layout() {
             <Tabs.Screen
                 name="cart/index"
                 options={{
-                    title: 'Cart',
+                    title: t('common.cart'),
                     tabBarBadge: totalItems > 0 ? totalItems : undefined,
                     tabBarBadgeStyle: {
                         backgroundColor: colors.light.tint,
@@ -45,16 +47,31 @@ export default function Layout() {
                 }}
             />
 
+            <Tabs.Screen
+                name="notifications/index"
+                options={{
+                    title: t('common.notifications'),
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="notifications-outline" size={size} color={color} />
+                    ),
+                }}
+            />
 
             <Tabs.Screen
                 name="account/index"
                 options={{
-                    title: 'Account',
+                    title: t('common.account'),
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="person-outline" size={size} color={color} />
                     ),
                 }}
             />
+
+
+
+
+
+
             <Tabs.Screen
                 name="stores/index"
                 options={{ href: null }}
@@ -79,10 +96,7 @@ export default function Layout() {
                 name="checkout/index"
                 options={{ href: null }}
             />
-            <Tabs.Screen
-                name="notifications/index"
-                options={{ href: null }}
-            />
+
         </Tabs>
     )
 }

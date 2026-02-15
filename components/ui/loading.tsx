@@ -228,7 +228,7 @@ export default function Loading({
       {showText && (
         <View className="items-center">
           <Text 
-            className="font-semibold mb-2 arabic-font-bold"
+            className="font-semibold mb-2 text-black dark:text-white "
             style={{ fontSize: config.text, color: '#1a1a1a' }}
           >
             {getMessage()}
