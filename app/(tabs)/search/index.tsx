@@ -91,9 +91,9 @@ export default function Search() {
         setError(null)
     }
 
-  
 
-   
+
+   console.log("the products", products)
 
     const renderEmptyState = () => {
         if (loading) return null

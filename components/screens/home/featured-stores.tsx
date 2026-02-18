@@ -1,3 +1,4 @@
+import Skeleton from '@/components/ui/skeleton'
 import { config } from '@/constants/config'
 import { usePlace } from '@/hooks/usePlace'
 import { Ionicons } from '@expo/vector-icons'
@@ -41,10 +42,7 @@ export default function FeaturedStores() {
             const data = response.data.data
             setFeaturedStores(data)
         } catch (error) {
-            console.log(
-                "Error fetching featured stores:",
-                
-            )
+            console.log("Error fetching featured stores:" )
         } finally {
             setLoading(false)
         }
@@ -74,16 +72,7 @@ export default function FeaturedStores() {
 
     if (loading) {
         return (
-            <View className="py-6">
-                <View className="flex-row items-center justify-between px-4 mb-4">
-                    <Text className="text-2xl font-bold text-gray-900 dark:text-white">
-                        {t("home.featured_stores")}
-                    </Text>
-                </View>
-                <View className="flex-row justify-center py-8">
-                    <ActivityIndicator size="large" color="#fd4a12" />
-                </View>
-            </View>
+            <Skeleton width={"100%"} height={200} />
         )
     }
 

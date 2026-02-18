@@ -28,7 +28,7 @@ export default function RootLayout() {
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="(tabs)/index" />
             </Stack>
-            <IntroModal />
+            {/* <IntroModal /> */}
         </AppProviders>
     )
 }
