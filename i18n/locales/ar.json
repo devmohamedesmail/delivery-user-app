@@ -62,7 +62,8 @@
     "downloading": "جاري التحميل...",
     "processing": "جاري المعالجة...",
     "cart": " عربة التسوق ",
-    "notifications": " الاشعارات  "
+    "notifications": " الاشعارات ",
+    "offers": " العروض "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",

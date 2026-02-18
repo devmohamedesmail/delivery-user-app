@@ -57,6 +57,16 @@ export default function Layout() {
                 }}
             />
 
+             <Tabs.Screen
+                name="offers/index"
+                options={{
+                    title: t('common.offers'),
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="gift-outline" size={size} color={color} />
+                    ),
+                }}
+            />
+
             <Tabs.Screen
                 name="account/index"
                 options={{
@@ -66,7 +76,7 @@ export default function Layout() {
                     ),
                 }}
             />
-
+             
 
 
 

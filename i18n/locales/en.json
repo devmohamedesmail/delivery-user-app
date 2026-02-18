@@ -62,7 +62,8 @@
     "downloading": "Downloading...",
     "processing": "Processing...",
     "cart": "Cart",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "offers": "Offers"
   },
   "auth": {
     "welcomeBack": "Welcome back!",
