@@ -1,9 +1,9 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import { useTranslation } from 'react-i18next'
 import { config } from '@/constants/config'
 import { useRouter } from 'expo-router'
-import {Plus} from 'lucide-react-native'
+import { Plus } from 'lucide-react-native'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 interface Product {
     id: number
@@ -77,7 +77,7 @@ export default function ResultCardItem({ item }: { item: Product }) {
                     </View>
 
                     <TouchableOpacity className='bg-primary dark:bg-primary-dark p-2 rounded-full'>
-                       <Text> <Plus color="white" size={20} /></Text>
+                        <Text> <Plus color="white" size={20} /></Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -1,272 +1,196 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Text, Animated, Dimensions } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Animated, Easing, Text, View } from 'react-native';
 
 interface LoadingProps {
   message?: string;
   size?: 'small' | 'medium' | 'large';
-  type?: 'default' | 'upload' | 'download' | 'processing';
   showText?: boolean;
 }
 
-
-
-export default function Loading({ 
-  message = 'Loading...', 
-  size = 'medium', 
-  type = 'default',
-  showText = true 
+export default function Loading({
+  message = 'Loading...',
+  size = 'medium',
+  showText = true
 }: LoadingProps) {
-  const spinValue = useRef(new Animated.Value(0)).current;
-  const pulseValue = useRef(new Animated.Value(0)).current;
-  const dotsValue = useRef(new Animated.Value(0)).current;
-  const scaleValue = useRef(new Animated.Value(0.8)).current;
-  const fadeValue = useRef(new Animated.Value(0)).current;
   const { t } = useTranslation();
 
-  // Size configurations
-  const sizeConfig = {
-    small: { container: 80, spinner: 40, text: 14 },
-    medium: { container: 120, spinner: 60, text: 16 },
-    large: { container: 160, spinner: 80, text: 18 }
-  };
+  // Animation Values
+  const bikeBounce = useRef(new Animated.Value(0)).current;
+  const wheelRotate = useRef(new Animated.Value(0)).current;
+  const roadMove = useRef(new Animated.Value(0)).current;
+  const windMove = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const roomWidthRef = useRef(50); // width of one dash segment + gap
 
-  const config = sizeConfig[size];
-
-  // Icon mapping for different types
-  const getIcon = () => {
-    switch (type) {
-      case 'upload': return 'cloud-upload-outline';
-      case 'download': return 'cloud-download-outline';
-      case 'processing': return 'cog-outline';
-      default: return 'refresh-outline';
-    }
+  // Configuration
+  const sizes = {
+    small: { icon: 40, text: 12, branding: 16 },
+    medium: { icon: 60, text: 14, branding: 20 },
+    large: { icon: 80, text: 16, branding: 24 },
   };
-
-  // Message mapping for different types
-  const getMessage = () => {
-    if (message !== 'Loading...') return message;
-    
-    switch (type) {
-      case 'upload': return t('common.uploading');
-      case 'download': return t('common.downloading');
-      case 'processing': return t('common.processing');
-      default: return t('common.loading');
-    }
-  };
+  const config = sizes[size];
+  const roadWidth = 100;
 
   useEffect(() => {
-    // Entrance animation
-    Animated.parallel([
-      Animated.timing(scaleValue, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(fadeValue, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-    ]).start();
+    // Fade In
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
 
-    // Spinning animation
-    const spinAnimation = Animated.loop(
-      Animated.timing(spinValue, {
-        toValue: 1,
-        duration: 2000,
-        useNativeDriver: true,
-      })
-    );
-
-    // Pulse animation
-    const pulseAnimation = Animated.loop(
+    // Bike Bounce Animation
+    const bounce = Animated.loop(
       Animated.sequence([
-        Animated.timing(pulseValue, {
-          toValue: 1,
-          duration: 1000,
+        Animated.timing(bikeBounce, {
+          toValue: -10,
+          duration: 400,
+          easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
-        Animated.timing(pulseValue, {
+        Animated.timing(bikeBounce, {
           toValue: 0,
-          duration: 1000,
+          duration: 400,
+          easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
       ])
     );
 
-    // Dots animation
-    const dotsAnimation = Animated.loop(
-      Animated.timing(dotsValue, {
+  
+    const tilt = Animated.loop(
+      Animated.sequence([
+        Animated.timing(wheelRotate, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+        Animated.timing(wheelRotate, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    // Road Line Movement (Infinite Scroll)
+    const road = Animated.loop(
+      Animated.timing(roadMove, {
         toValue: 1,
-        duration: 1500,
+        duration: 800,
+        easing: Easing.linear,
         useNativeDriver: true,
       })
     );
 
-    spinAnimation.start();
-    pulseAnimation.start();
-    dotsAnimation.start();
+    // Wind/Cloud Movement
+    const wind = Animated.loop(
+      Animated.timing(windMove, {
+        toValue: 1,
+        duration: 1500,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    );
+
+    bounce.start();
+    road.start();
+    wind.start();
+    // tilt.start(); 
 
     return () => {
-      spinAnimation.stop();
-      pulseAnimation.stop();
-      dotsAnimation.stop();
+      bounce.stop();
+      road.stop();
+      wind.stop();
+      // tilt.stop();
     };
   }, []);
 
-  const spin = spinValue.interpolate({
+  const roadTranslateX = roadMove.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
+    outputRange: [0, -roomWidthRef.current || -50], // Value needs to match width of dash pattern
   });
 
-  const pulseScale = pulseValue.interpolate({
+  const windTranslateX = windMove.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.8, 1.2],
+    outputRange: [50, -50], // Move past the bike
   });
 
-  const pulseOpacity = pulseValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.3, 0.1],
-  });
 
-  const dotsOpacity1 = dotsValue.interpolate({
-    inputRange: [0, 0.2, 0.4, 1],
-    outputRange: [0.3, 1, 0.3, 0.3],
-  });
-
-  const dotsOpacity2 = dotsValue.interpolate({
-    inputRange: [0, 0.1, 0.3, 0.5, 1],
-    outputRange: [0.3, 0.3, 1, 0.3, 0.3],
-  });
-
-  const dotsOpacity3 = dotsValue.interpolate({
-    inputRange: [0, 0.4, 0.6, 0.8, 1],
-    outputRange: [0.3, 0.3, 0.3, 1, 0.3],
-  });
 
   return (
-    <Animated.View 
-      className="items-center justify-center mt-44"
-      style={{
-        transform: [{ scale: scaleValue }],
-        opacity: fadeValue,
-      }}
+    <Animated.View
+      className="items-center justify-center flex-1"
+      style={{ opacity: fadeAnim }}
     >
-      {/* Main Loading Container */}
-      <View className="relative items-center justify-center mb-6">
-        {/* Pulse Background Rings */}
+      <View className="items-center justify-center h-40">
+        {/* Wind/Speed Lines - Moving past */}
         <Animated.View
-          className="absolute rounded-full border-2"
+          className="absolute top-0 right-0"
           style={{
-            borderColor: '#fd4a12',
-            width: config.container,
-            height: config.container,
-            transform: [{ scale: pulseScale }],
-            opacity: pulseOpacity,
-          }}
-        />
-        
-        <Animated.View
-          className="absolute rounded-full border"
-          style={{
-            borderColor: '#fd4a12',
-            width: config.container * 0.8,
-            height: config.container * 0.8,
-            transform: [{ scale: pulseScale }],
-            opacity: pulseOpacity,
-          }}
-        />
-
-        {/* Main Spinner with Gradient */}
-        <LinearGradient
-          colors={['#fd4a12', '#ff7a47', '#ff9066']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          className="rounded-full items-center justify-center"
-          style={{
-            width: config.spinner,
-            height: config.spinner,
+            transform: [{ translateX: windTranslateX }],
+            opacity: 0.6
           }}
         >
+          <View className="h-0.5 w-8 bg-gray-300 rounded mb-2" />
+          <View className="h-0.5 w-4 bg-gray-300 rounded ml-4" />
+        </Animated.View>
+
+        {/* Bouncing Bike */}
+        <Animated.View
+          style={{
+            transform: [
+              { translateY: bikeBounce },
+            ]
+          }}
+          className="z-10 bg-transparent"
+        >
+          <Ionicons name="bicycle" size={config.icon} color="#fd4a12" />
+        </Animated.View>
+
+        {/* Moving Road */}
+        <View className="h-1 w-32 overflow-hidden mt-2 flex-row items-center relative">
           <Animated.View
+            className="flex-row absolute"
             style={{
-              transform: [{ rotate: spin }],
+              transform: [{
+                translateX: roadMove.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, -40] // Width of pattern (dash 20 + gap 20)
+                })
+              }]
             }}
           >
-            <Ionicons 
-              name={getIcon() as any} 
-              size={config.spinner * 0.4} 
-              color="white" 
-            />
+            {/* Repeat dashes to cover width + buffer for loop */}
+            {[...Array(6)].map((_, i) => (
+              <View key={i} className="flex-row items-center justify-center" style={{ width: 40 }}>
+                <View className="h-1 w-5 bg-gray-300 rounded-full" />
+                <View className="w-5" />
+              </View>
+            ))}
           </Animated.View>
-        </LinearGradient>
-
-        {/* Orbiting Dots */}
-        <View className="absolute inset-0 items-center justify-center">
-          {[0, 120, 240].map((rotation, index) => (
-            <Animated.View
-              key={index}
-              className="absolute w-3 h-3 rounded-full"
-              style={{
-                backgroundColor: '#fd4a12',
-                transform: [
-                  { rotate: `${rotation}deg` },
-                  { translateY: -(config.spinner * 0.7) },
-                  { rotate: spin },
-                ],
-                opacity: index === 0 ? dotsOpacity1 : index === 1 ? dotsOpacity2 : dotsOpacity3,
-              }}
-            />
-          ))}
         </View>
       </View>
 
-      {/* Loading Text */}
-      {showText && (
-        <View className="items-center">
-          <Text 
-            className="font-semibold mb-2 text-black dark:text-white "
-            style={{ fontSize: config.text, color: '#1a1a1a' }}
+      {/* Branding and Message */}
+      {/* {showText && (
+        <View className="items-center mt-4">
+          <Text
+            className="font-bold text-primary mb-1"
+            style={{ fontSize: config.branding, color: '#fd4a12', letterSpacing: 1 }}
           >
-            {getMessage()}
+            Riva
           </Text>
-          
-          {/* Animated Dots */}
-          <View className="flex-row space-x-1">
-            <Animated.View
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: '#fd4a12', opacity: dotsOpacity1 }}
-            />
-            <Animated.View
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: '#fd4a12', opacity: dotsOpacity2 }}
-            />
-            <Animated.View
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: '#fd4a12', opacity: dotsOpacity3 }}
-            />
-          </View>
+          <Text
+            className="font-medium text-gray-500 dark:text-gray-400"
+            style={{ fontSize: config.text }}
+          >
+            {message === 'Loading...' ? t('common.loading') : message}
+          </Text>
         </View>
-      )}
-
-      {/* Progress Bar (for specific types) */}
-      {(type === 'upload' || type === 'download') && (
-        <View className="w-48 h-2 bg-gray-200 rounded-full mt-4 overflow-hidden">
-          <Animated.View
-            className="h-full rounded-full"
-            style={{
-              backgroundColor: '#fd4a12',
-              width: dotsValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: ['20%', '90%'],
-              }),
-            }}
-          />
-        </View>
-      )}
+      )} */}
     </Animated.View>
   );
 }

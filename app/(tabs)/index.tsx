@@ -41,7 +41,6 @@ useEffect(() => {
         <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
         <ScrollView>
           <HomeSearch />
-          
           {/* <ResetPlaceButton /> */}
           <SlideShow />
           <StoreTypesSection />

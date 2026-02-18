@@ -1,5 +1,7 @@
+import EmptyOffers from '@/components/screens/offers/empty-offers';
 import OfferCard from '@/components/screens/offers/offer-card';
 import OffersHeader from '@/components/screens/offers/offers-header';
+import Loading from '@/components/ui/loading';
 import { config } from '@/constants/config';
 import { usePlace } from '@/hooks/usePlace';
 import { Ionicons } from '@expo/vector-icons';
@@ -76,34 +78,16 @@ export default function Offers() {
         <OfferCard item={item} />
     );
 
-    const EmptyState = () => (
-        <View className="flex-1 justify-center items-center px-6 mt-20">
-            <View className="bg-gray-100 dark:bg-gray-800 p-6 rounded-full mb-4">
-                <Ionicons
-                    name="pricetags-outline"
-                    size={48}
-                    color={colorScheme === 'dark' ? '#9CA3AF' : '#9CA3AF'}
-                />
-            </View>
-            <Text className="text-xl font-bold text-gray-900 dark:text-white mb-2 text-center">
-                {t('offers.noOffers')}
-            </Text>
-            <Text className="text-base text-gray-500 dark:text-gray-400 text-center leading-6">
-                {t('offers.noOffersMessage')}
-            </Text>
-        </View>
-    );
+  
 
     return (
         <View className="flex-1 bg-gray-50 dark:bg-black">
             <OffersHeader />
 
             {loading && !refreshing ? (
-                <View className="flex-1 justify-center items-center">
-                    <ActivityIndicator size="large" color="#fd4a12" />
-                </View>
+                <Loading />
             ) : offers.length === 0 ? (
-                <EmptyState />
+                <EmptyOffers />
             ) : (
                 <FlatList
                     data={offers}
@@ -118,6 +102,7 @@ export default function Offers() {
                     }
                 />
             )}
+            
         </View>
     );
 }

@@ -8,10 +8,10 @@ import { config } from '@/constants/config'
 import { usePlace } from '@/hooks/usePlace'
 import { Ionicons } from '@expo/vector-icons'
 import axios from 'axios'
-import { router, useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ActivityIndicator, FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 
 interface Product {
     id: number
@@ -79,21 +79,9 @@ export default function Search() {
         }
     }
 
-    const handleSearch = () => {
-        if (searchQuery.trim()) {
-            performSearch(searchQuery)
-        }
-    }
-
-    const handleClear = () => {
-        setSearchQuery('')
-        setProducts([])
-        setError(null)
-    }
 
 
 
-   console.log("the products", products)
 
     const renderEmptyState = () => {
         if (loading) return null
@@ -127,7 +115,7 @@ export default function Search() {
 
     return (
         <Layout>
-            <Header title={t('common.search_results') } />
+            <Header title={t('common.search_results')} />
             <View className="flex-1 bg-background dark:bg-background-dark">
                 <HomeSearch />
 
