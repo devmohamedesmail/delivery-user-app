@@ -7,6 +7,7 @@ import { useRouter } from "expo-router";
 import Search from '@/components/ui/search';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import HeaderIcon from '@/components/ui/header-icon';
 export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearchQuery }: any) {
     const router = useRouter();
     const { i18n } = useTranslation();
@@ -44,6 +45,16 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                         </View>
                     )}
                 </TouchableOpacity>
+
+                {/* <HeaderIcon
+                    icon={<AntDesign name="comment" size={22} color="black" />}
+                    onPress={() => router.push({
+                        pathname: '/stores/reviews',
+                        params: { storeItem: JSON.stringify(parsedStoreItem) }
+                    })}
+                    count={parsedStoreItem.total_reviews}
+
+                /> */}
 
 
                 <TouchableOpacity

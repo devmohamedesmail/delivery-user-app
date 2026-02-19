@@ -4,13 +4,11 @@ import { useRouter } from 'expo-router'
 import { Plus } from 'lucide-react-native'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native'
 import Toast from 'react-native-toast-message'
 import { useColorScheme } from 'nativewind'
 import { Alert } from 'react-native'
 import { addToCart, clearCart } from '@/store/store'
-import Modal from "react-native-modal";
-import { AntDesign } from '@expo/vector-icons'
 import AddCartModal from '@/components/ui/add-cart-modal'
 
 interface Attribute {
