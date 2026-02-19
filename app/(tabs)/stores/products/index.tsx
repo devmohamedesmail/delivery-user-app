@@ -4,12 +4,12 @@ import useFetch from '@/hooks/useFetch'
 import { useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import Layout from '@/components/ui/layout'
-import ProductsHeader from '@/components/screens/stores/products-header'
+import ProductsHeader from '@/components/screens/products/products-header'
 import CategoriesSection from '@/components/screens/stores/categories-section'
 import Loading from '@/components/ui/loading'
 import { FlatList, Text, View } from 'react-native'
-import ProductCard from '@/components/screens/stores/product-card'
-import NoProducts from '@/components/screens/stores/no-products'
+import ProductCard from '@/components/screens/products/product-card'
+import NoProducts from '@/components/screens/products/no-products'
 
 interface Product {
   id: number;
