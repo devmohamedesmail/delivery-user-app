@@ -10,6 +10,7 @@ import { useColorScheme } from 'nativewind';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
+import { addToCart, clearCart } from "@/store/slices/cartSlice";
 
 interface Attribute {
     id: number;

@@ -63,7 +63,10 @@
     "processing": "جاري المعالجة...",
     "cart": " عربة التسوق ",
     "notifications": " الاشعارات ",
-    "offers": " العروض "
+    "offers": " العروض ",
+    "starts_from": " يبدأ من ",
+    "search_error": " خطأ في البحث ",
+    "search_error_description": " يرجى المحاولة مرة أخرى "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",
@@ -561,5 +564,9 @@
     "deliveryTime": "دقيقة",
     "free": "مجاني",
     "delivery": "التوصيل"
+  },
+  "splash": {
+    "welcome_message": "مرحباً بك في تطبيقنا",
+    "loading_app": "جاري تحميل التطبيق..."
   }
 }

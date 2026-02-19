@@ -63,7 +63,10 @@
     "processing": "Processing...",
     "cart": "Cart",
     "notifications": "Notifications",
-    "offers": "Offers"
+    "offers": "Offers",
+    "starts_from": "Start from",
+    "search_error": "Search error",
+    "search_error_description": "Please try again"
   },
   "auth": {
     "welcomeBack": "Welcome back!",
@@ -561,5 +564,9 @@
     "deliveryTime": "min",
     "free": "Free",
     "delivery": "Delivery"
+  },
+  "splash":{
+    "welcome_message": "Welcome to our app",
+    "loading_app": "Loading app..."
   }
 }
