@@ -26,13 +26,11 @@ useEffect(() => {
   if (!selectedPlace) {
     const timer = setTimeout(() => {
       bottomSheetRef.current?.expand()
-      console.log("the bottom sheet is open")
+      
     }, 100) 
 
     return () => clearTimeout(timer)
-  } else {
-    console.log("the bottom sheet is closed")
-  }
+  } 
 }, [selectedPlace])
  
   return (
