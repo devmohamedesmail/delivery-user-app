@@ -7,14 +7,11 @@ import { usePlace } from '@/hooks/usePlace'
 import SlideShow from '@/components/screens/home/side-show'
 import StoreTypesSection from '@/components/screens/home/store-types-section';
 import HomeHeader from '@/components/screens/home/home-header';
-import { View, Text, ScrollView, TouchableOpacity, Pressable } from 'react-native'
+import { View, Text, ScrollView, Pressable } from 'react-native'
 import BottomPaper from '@/components/ui/bottom-paper';
 import { Ionicons } from '@expo/vector-icons'
 import HomeSearch from '@/components/screens/home/home-search';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import FeaturedStores from '@/components/screens/home/featured-stores';
-import ResetPlaceButton from '@/components/ui/reset-place';
-import Search from '@/components/ui/search';
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -39,6 +36,7 @@ useEffect(() => {
         <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
         <ScrollView>
           <HomeSearch />
+          {/* <NotificationTester /> */}
           {/* <ResetPlaceButton /> */}
           <SlideShow />
           <StoreTypesSection />

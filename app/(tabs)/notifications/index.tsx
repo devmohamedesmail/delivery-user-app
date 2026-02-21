@@ -3,12 +3,13 @@ import Header from '@/components/ui/header';
 import { config } from '@/constants/config';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
-import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, RefreshControl, Text, View } from 'react-native';
-
+import { io, Socket } from "socket.io-client";
+import * as Notifications from 'expo-notifications';
+import EmptyState from '@/components/screens/notifications/empty-state';
 interface NotificationData {
   type: string;
   priority?: string;
@@ -57,12 +58,29 @@ const getNotificationType = (type: string): 'info' | 'success' | 'warning' | 'er
   }
 };
 
-export default function Notifications() {
+
+
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldShowList: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
+
+
+export default function NotificationsScreen() {
   const { t } = useTranslation();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const { colorScheme } = useColorScheme();
+  const socketRef = useRef<Socket | null>(null);
+
+  const socket = io(`${config.URL}`);
 
 
   const fetch_notifications = async () => {
@@ -81,6 +99,36 @@ export default function Notifications() {
 
   useEffect(() => {
     fetch_notifications();
+
+
+    socketRef.current = io(config.BASE_URL, {
+      transports: ["websocket"],
+    });
+
+    socketRef.current.on("connect", () => {
+      
+    });
+
+    socketRef.current.on("new_notification", async (notification: Notification) => {
+    
+
+      await Notifications.scheduleNotificationAsync({
+          content: {
+            title: t(notification.title),
+            body: t(notification.message,),
+            sound: 'default',
+            data: { type: 'new_notification', order: notification },
+          },
+          trigger: null, 
+        });
+    
+      setNotifications((prev) => [notification, ...prev]);
+    });
+
+    // Cleanup
+    return () => {
+      socketRef.current?.disconnect();
+    };
   }, []);
 
   const onRefresh = React.useCallback(() => {
@@ -105,23 +153,7 @@ export default function Notifications() {
     />
   );
 
-  const EmptyState = () => (
-    <View className="flex-1 justify-center items-center px-6 -mt-20">
-      <View className="bg-gray-100 dark:bg-gray-800 p-6 rounded-full mb-4">
-        <Ionicons
-          name="notifications-off-outline"
-          size={48}
-          color={colorScheme === 'dark' ? '#9CA3AF' : '#9CA3AF'}
-        />
-      </View>
-      <Text className="text-xl font-bold text-gray-900 dark:text-white mb-2 text-center">
-        {t('notifications.noNotifications')}
-      </Text>
-      <Text className="text-base text-gray-500 dark:text-gray-400 text-center leading-6">
-        {t('notifications.noNotificationsMessage')}
-      </Text>
-    </View>
-  );
+
 
   return (
     <View className="flex-1 bg-gray-50 dark:bg-black">

@@ -15,7 +15,7 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
     return (
         <LinearGradient
             colors={["#fd4a12", "#FF6A3D"]}
-            className="px-5 pt-14 pb-6"
+            className="px-4 pt-14 pb-6"
         >
             <View className="flex-row items-center justify-between mb-4">
                 <TouchableOpacity
@@ -34,7 +34,7 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                         pathname: '/stores/reviews',
                         params: { storeItem: JSON.stringify(parsedStoreItem) }
                     })}
-                    className="w-10 h-10 rounded-full bg-white/20 items-center justify-center"
+                    className="w-10 h-10 rounded-full bg-white/20 items-center justify-center mx-2"
                 >
                     <AntDesign name="comment" size={22} color="white" />
                     {parsedStoreItem.total_reviews && (
@@ -45,17 +45,6 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                         </View>
                     )}
                 </TouchableOpacity>
-
-                {/* <HeaderIcon
-                    icon={<AntDesign name="comment" size={22} color="black" />}
-                    onPress={() => router.push({
-                        pathname: '/stores/reviews',
-                        params: { storeItem: JSON.stringify(parsedStoreItem) }
-                    })}
-                    count={parsedStoreItem.total_reviews}
-
-                /> */}
-
 
                 <TouchableOpacity
                     onPress={() => router.push("/cart")}
@@ -78,7 +67,7 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                 }
                 value={searchQuery}
                 onChangeText={setSearchQuery}
-                onPress={() => setSearchQuery("")}
+                // onPress={() => setSearchQuery("")}
             />
         </LinearGradient>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'
 import useFetch from '@/hooks/useFetch'
 
 
@@ -19,7 +19,7 @@ export default function CategoriesSection({
                     <View className="flex-row items-center">
                         <TouchableOpacity
                             onPress={() => setSelectedCategory(null)}
-                            className={`mr-2 px-4 py-2 rounded-full ${selectedCategory === null ? "bg-primary" : "bg-gray-200"
+                            className={`mr-2 px-4 py-2 rounded-md flex flex-row items-center ${selectedCategory === null ? "bg-primary" : "bg-gray-200"
                                 }`}
                         >
                             <Text
@@ -35,11 +35,16 @@ export default function CategoriesSection({
                                 <TouchableOpacity
                                     key={cat.id}
                                     onPress={() => setSelectedCategory(cat.id)}
-                                    className={`mr-2 px-4 py-2 rounded-full ${selectedCategory === cat.id ? "bg-primary" : "bg-gray-200"
+                                    className={`mr-2 px-4 py-2 rounded-md flex flex-row items-center ${selectedCategory === cat.id ? "bg-primary" : "bg-gray-200"
                                         }`}
                                 >
+
+                                    <Image
+                                    source={{ uri: cat.image }}
+                                    className="w-10 h-10 rounded-md"
+                                    />
                                     <Text
-                                        className={`font-semibold ${selectedCategory === cat.id
+                                        className={`font-semibold mx-2 ${selectedCategory === cat.id
                                                 ? "text-white"
                                                 : "text-gray-700"
                                             }`}

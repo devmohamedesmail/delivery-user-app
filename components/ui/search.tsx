@@ -27,8 +27,8 @@ export default function SearchInput({
   const { t, i18n } = useTranslation()
   return (
   
-    <View className="px-4 py-3" style={containerStyle}>
-      <View className="bg-card dark:bg-card-dark rounded-2xl flex-row items-center px-4 py-3 shadow-sm border border-border dark:border-border-dark">
+    <View className="px-1 py-3" style={containerStyle}>
+      <View className="bg-card dark:bg-card-dark rounded-2xl flex-row items-center px-3 py-3 shadow-sm border border-border dark:border-border-dark">
         <Ionicons name="search" size={22} color="#fd4a12" />
         <TextInput
           placeholder={placeholder}

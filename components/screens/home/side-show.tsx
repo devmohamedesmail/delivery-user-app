@@ -5,6 +5,7 @@ import Swiper from 'react-native-swiper'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useTheme } from '@/hooks/useTheme'
 import colors from '@/constants/colors'
+import Skeleton from '@/components/ui/skeleton'
 
 
 
@@ -22,13 +23,14 @@ export default function SlideShow() {
   const { data, loading, error } = useFetch('/banners')
   const { theme } = useTheme()
   const isDark = theme === 'dark'
-//   const colors = Colors[theme]
-  if (loading) return null
+  // if (loading) return null
   if (!data || data.length === 0) return null
 
   return (
     <View className='px-3 '>
-      <View style={{ height: 200 }}>
+     
+      {loading ? (<Skeleton width={"100%"} height={300} />):(
+         <View style={{ height: 200 }}>
         <Swiper
           autoplay
           loop
@@ -102,6 +104,7 @@ export default function SlideShow() {
           ))}
         </Swiper>
       </View>
+      )}
     </View>
   )
 }

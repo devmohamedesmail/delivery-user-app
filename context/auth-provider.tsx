@@ -52,23 +52,17 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const handle_register = async (name: string, email: string | null, phone: string | null, password: string, role_id: string) => {
         try {
             const registerData: any = { name, password, role_id };
-
-            // Send only the provided field (email OR phone)
             if (email) {
                 registerData.email = email;
             } else if (phone) {
                 registerData.phone = phone;
             }
-
-            console.log('Register data:', registerData);
             const response = await axios.post(`${config.URL}/auth/register`, registerData);
-
             const user = response.data;
             await AsyncStorage.setItem('user', JSON.stringify(user));
             setAuth(user);
             return { success: true, data: user };
         } catch (error: any) {
-            console.log('Error registering', error.response?.data || error.message);
             return { success: false, message: error.response?.data?.message || 'Registration failed' };
         }
     };
