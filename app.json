@@ -2,7 +2,7 @@
   "expo": {
     "name": " Riva ",
     "slug": "tawsila-app",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "tawsila",
@@ -11,7 +11,7 @@
    
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.14",
+      "buildNumber": "1.0.15",
       "bundleIdentifier": "com.dev.mohamed.esmail.tawsilaapp",
       "config": {
         "googleMapsApiKey": "AIzaSyCWrI-BwVYZE6D7wzFCVeEuaKr6VR-6FGI"
@@ -28,7 +28,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.dev.mohamed.esmail.tawsilaapp",
-      "versionCode": 14,
+      "versionCode": 15,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
