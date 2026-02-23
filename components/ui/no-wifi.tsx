@@ -23,12 +23,12 @@ export default function NoWifi({ isConnected }: { isConnected: boolean }) {
 
                     {/* Title */}
                     <Text className="text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center">
-                        {t('network.noConnection') || 'No Internet Connection'}
+                        {t('network.title')}
                     </Text>
 
                     {/* Message */}
                     <Text className="text-base text-gray-600 dark:text-gray-300 text-center leading-6">
-                        {t('network.pleaseConnect') || 'Please connect to WiFi or mobile data to continue'}
+                        {t('network.message')}
                     </Text>
                 </View>
             </View>

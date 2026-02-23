@@ -569,5 +569,10 @@
   "splash":{
     "welcome_message": "Welcome to our app",
     "loading_app": "Loading app..."
+  },
+  "network":{
+    "title": "No Internet Connection",
+    "message": "Please check your internet connection and try again.",
+    "retry": "Retry"
   }
 }
