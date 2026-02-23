@@ -72,29 +72,26 @@ export default function Products() {
         selectedCategory={selectedCategory}
         t={t}
       />
-
-
-      {productsLoading ? (
+{productsLoading ? (
         <Loading />
       ) : (
-        <View className='px-2 pb-52'>
-          {filteredProducts.length === 0 ? (
-            <NoProducts searchQuery={searchQuery} />
-          ) : (
-            <FlatList
-              data={filteredProducts}
-              numColumns={2}
-              columnWrapperStyle={{ justifyContent: "space-between", gap: 10 }}
-              renderItem={({ item }) => (
-                <ProductCard item={item} store={parsedStoreItem} />
-              )}
-              keyExtractor={(item) => item.id.toString()}
-              contentContainerStyle={{ paddingTop: 10, paddingBottom: 20 }}
-              showsVerticalScrollIndicator={false}
-            />
-          )}
+        <View style={{ flex: 1, paddingHorizontal: 8, paddingBottom: 52 }}>
+          <FlatList
+            data={filteredProducts || []}
+            numColumns={2}
+            columnWrapperStyle={{ justifyContent: "space-between", gap: 10 }}
+            renderItem={({ item }) => (
+              <ProductCard item={item} store={parsedStoreItem} />
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={{ paddingTop: 10, paddingBottom: 20, flexGrow: 1 }}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={() => <NoProducts searchQuery={searchQuery} />}
+          />
         </View>
       )}
+
+     
     </Layout>
   )
 }

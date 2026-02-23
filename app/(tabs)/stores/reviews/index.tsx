@@ -12,6 +12,7 @@ import ReviewLoading from '@/components/screens/stores/reviews-loading'
 import NoReviews from '@/components/screens/stores/no-reviews'
 import { Ionicons } from '@expo/vector-icons';
 import AddReview from '@/components/screens/stores/add-review'
+import BottomPaper from '@/components/ui/bottom-paper'
 
 export default function Reviews() {
     const storeItem = useLocalSearchParams().storeItem;
@@ -127,6 +128,9 @@ export default function Reviews() {
                 </View>
             </ScrollView>
             <AddReview storeItem={parsedStoreItem} />
+
+
+           
         </Layout>
     )
 }

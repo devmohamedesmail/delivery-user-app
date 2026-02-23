@@ -8,8 +8,8 @@ export default function NoProducts({ searchQuery }: { searchQuery: string }) {
     return (
         <View className='flex-1 items-center justify-center px-5'>
             <Ionicons name="cube-outline" size={64} color="#d1d5db" />
-            <Text className='text-gray-800 text-lg font-bold mt-4'>{t('stores.noProductsFound')}</Text>
-            <Text className='text-gray-500 text-center mt-2'>
+            <Text className='text-black dark:text-white text-lg font-bold mt-4'>{t('stores.noProductsFound')}</Text>
+            <Text className='text-gray-500 dark:text-gray-400 text-center mt-2'>
                 {searchQuery ? t('stores.tryDifferentKeywords') : t('stores.noProductsAvailable')}
             </Text>
         </View>

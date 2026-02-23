@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons } from '@expo/vector-icons'
-import { useTranslation } from 'react-i18next'
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { config } from '@/constants/config';
-import { useRouter } from 'expo-router'
-import { useAuth } from '@/hooks/useAuth'
 import Modal from '@/components/ui/modal'
+import { config } from '@/constants/config'
+import { useAuth } from '@/hooks/useAuth'
+import { Ionicons } from '@expo/vector-icons'
+import axios from 'axios'
+import { LinearGradient } from 'expo-linear-gradient'
+import { useRouter } from 'expo-router'
+import { useFormik } from 'formik'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import * as Yup from 'yup'
 
 export default function AddReview({ storeItem }: any) {
     const { t, i18n } = useTranslation();
@@ -99,7 +99,7 @@ export default function AddReview({ storeItem }: any) {
             </TouchableOpacity>
 
             {/* Add Review Modal */}
-            
+
             <Modal visible={isModalReviewVisible} onClose={() => {
                 setModalReviewVisible(false);
                 formik.resetForm();
@@ -208,13 +208,8 @@ export default function AddReview({ storeItem }: any) {
 
             {/* Login Required Modal - Improved Design */}
             <Modal
-                isVisible={authModalVisible}
-                onBackdropPress={() => setAuthModalVisible(false)}
-                animationOutTiming={400}
-                animationInTiming={400}
-                animationIn="fadeInUp"
-                animationOut="fadeOutDown"
-                backdropOpacity={0.6}
+                visible={authModalVisible}
+                onClose={() => setAuthModalVisible(false)}
             >
                 <View className='bg-white rounded-3xl p-8 mx-4'>
                     {/* Icon */}
@@ -265,13 +260,8 @@ export default function AddReview({ storeItem }: any) {
 
             {/* Success Modal */}
             <Modal
-                isVisible={successModalVisible}
-                onBackdropPress={() => setSuccessModalVisible(false)}
-                animationOutTiming={400}
-                animationInTiming={400}
-                animationIn="zoomIn"
-                animationOut="zoomOut"
-                backdropOpacity={0.6}
+                visible={successModalVisible}
+                onClose={() => setSuccessModalVisible(false)}
             >
                 <View className='bg-white rounded-3xl p-8 mx-4'>
                     {/* Success Animation */}
@@ -321,13 +311,8 @@ export default function AddReview({ storeItem }: any) {
 
             {/* Error Modal */}
             <Modal
-                isVisible={errorModalVisible}
-                onBackdropPress={() => setErrorModalVisible(false)}
-                animationOutTiming={400}
-                animationInTiming={400}
-                animationIn="shake"
-                animationOut="fadeOutDown"
-                backdropOpacity={0.6}
+                visible={errorModalVisible}
+                onClose={() => setErrorModalVisible(false)}
             >
                 <View className='bg-white rounded-3xl p-8 mx-4'>
                     {/* Error Icon */}
