@@ -31,15 +31,12 @@ interface Product {
   business_id: number;
   category_id: number;
   attributes?: Attribute[];
+  product_type: string;
 }
 
 export default function ProductCard({ item, store }: { item: Product; store: any }) {
   const { t } = useTranslation();
-  // const dispatch = useAppDispatch();
-  // const cartItems = useAppSelector((state) => state.cart.items);
-  // const cartStore = useAppSelector((state) => state.cart.store);
   const { handleAddToCart, getCartQuantity } = useAddToCart();
-
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedAttribute, setSelectedAttribute] = useState<{
     name: string;
@@ -48,7 +45,6 @@ export default function ProductCard({ item, store }: { item: Product; store: any
   } | null>(null);
 
   const [modalQuantity, setModalQuantity] = useState(1);
-
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
     if (!isModalVisible) {
@@ -63,8 +59,29 @@ export default function ProductCard({ item, store }: { item: Product; store: any
   };
 
   const quantity = getCartQuantity(item.id);
-  const basePrice =
-    item.on_sale && item.sale_price ? item.sale_price : item.price;
+  const basePrice = item.on_sale && item.sale_price ? item.sale_price : item.price;
+
+
+  const getPriceRange = (item: Product) => {
+    if (!item.attributes) return null;
+
+    let prices: number[] = [];
+
+    item.attributes.forEach(attr => {
+      attr.values.forEach(v => {
+        if (v.price) prices.push(v.price);
+      });
+    });
+
+    if (!prices.length) return null;
+
+    const min = Math.min(...prices);
+    const max = Math.max(...prices);
+
+    return { min, max };
+  };
+
+  const priceRange = getPriceRange(item);
 
   return (
     <View className="w-1/2 mb-5 bg-white dark:bg-card-dark rounded-lg overflow-hidden relative">
@@ -108,7 +125,40 @@ export default function ProductCard({ item, store }: { item: Product; store: any
 
       <View className="flex flex-row justify-between items-center px-4 pb-2">
         <View className="flex-row justify-center items-center mt-1">
-          {item.on_sale && item.sale_price ? (
+
+
+
+          {item.product_type === "simple" ? (
+            <>
+              {item.on_sale && item.sale_price ? (
+                <>
+                  <Text className="text-primary font-bold text-md">
+                    {item.sale_price} {t("common.currency")}
+                  </Text>
+                  <Text className="text-gray-400 line-through text-xs ml-2">
+                    {item.price} {t("common.currency")}
+                  </Text>
+                </>
+              ) : (
+                <Text className="text-primary font-bold text-sm">
+                  {item.price} {t("common.currency")}
+                </Text>
+              )}
+
+
+            </>) : (<Text>
+              <Text className="text-primary font-bold text-sm">
+                {priceRange?.min} - {priceRange?.max} {t("common.currency")}
+              </Text>
+            </Text>)}
+
+
+
+
+
+
+
+          {/* {item.on_sale && item.sale_price ? (
             <>
               <Text className="text-primary font-bold text-md">
                 {item.sale_price} {t("common.currency")}
@@ -121,7 +171,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
             <Text className="text-primary font-bold text-sm">
               {item.price} {t("common.currency")}
             </Text>
-          )}
+          )} */}
         </View>
         <Pressable
           onPress={handleAddButtonPress}
@@ -183,11 +233,26 @@ export default function ProductCard({ item, store }: { item: Product; store: any
 
 
 
-          <QuantityControlSection
+          {/* <QuantityControlSection
             modalQuantity={modalQuantity}
             onQuantityChange={setModalQuantity}
-          />
+          /> */}
 
+ <View className="flex-row items-center justify-center mb-4 bg-gray-100 rounded-full p-2">
+            <TouchableOpacity
+              onPress={() => setModalQuantity(Math.max(1, modalQuantity - 1))}
+              className="bg-white w-10 h-10 rounded-full items-center justify-center"
+            >
+              <Text className="text-primary text-2xl font-bold">-</Text>
+            </TouchableOpacity>
+            <Text className="text-xl font-bold mx-6">{modalQuantity}</Text>
+            <TouchableOpacity
+              onPress={() => setModalQuantity(modalQuantity + 1)}
+              className="bg-primary w-10 h-10 rounded-full items-center justify-center"
+            >
+              <Text className="text-white text-2xl font-bold">+</Text>
+            </TouchableOpacity>
+          </View>
           {/* Action Button */}
 
           <TouchableOpacity

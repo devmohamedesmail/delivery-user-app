@@ -75,7 +75,7 @@ export default function Products() {
 {productsLoading ? (
         <Loading />
       ) : (
-        <View style={{ flex: 1, paddingHorizontal: 8, paddingBottom: 52 }}>
+        <View style={{ flex: 1, paddingHorizontal: 8 }}>
           <FlatList
             data={filteredProducts || []}
             numColumns={2}

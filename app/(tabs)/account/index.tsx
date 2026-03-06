@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Toast from 'react-native-toast-message'
 
-export default function index() {
+export default function AccountScreen() {
   const { t, i18n } = useTranslation();
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const router = useRouter()
