@@ -1,7 +1,7 @@
 import ErrorMessage from '@/components/ui/error-message'
 import Layout from '@/components/ui/layout'
 import Loading from '@/components/ui/loading'
-import FeaturedStoreCard from '@/components/ui/product/featured-store-card'
+import FeaturedStoreCard from '@/components/ui/store-card/featured-store-card'
 import Text from '@/components/ui/text'
 import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
 import { Ionicons } from '@expo/vector-icons'
@@ -54,7 +54,7 @@ export default function FeaturedStoresPage() {
                     data={data}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                        <FeaturedStoreCard store={item} className="w-1/2 mb-3" />
+                        <FeaturedStoreCard store={item} />
                     )}
                     ListEmptyComponent={
                         <Text className="text-center mt-10">

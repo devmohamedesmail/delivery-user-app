@@ -15,7 +15,7 @@ export default function ModalSelectOption({ attrValue, attribute, valueIndex, se
                     price: attrValue.price,
                 })
             }
-            className={`p-3 rounded-lg mb-2 flex-row justify-between items-center border ${isSelected
+            className={`p-5 rounded-lg mb-2 justify-between items-center border  ${isSelected
                 ? "bg-primary border-primary"
                 : "bg-gray-50 dark:bg-zinc-800 border-gray-100 dark:border-zinc-700"
                 }`}

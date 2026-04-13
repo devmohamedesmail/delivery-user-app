@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import AddCartModalAction from '@/components/ui/cart/add-cart-modal-action';
 import QuantityControlSection from '@/components/ui/cart/quantity-control-section';
 import AddCartModalHeader from '@/components/ui/cart/add-cart-modal-header';
 import ModalSelectOption from '@/components/ui/cart/modal-select-option';
+import Text from '@/components/ui/text';
 
 export default function AddCartModal({
     isModalVisible,
@@ -19,7 +20,6 @@ export default function AddCartModal({
 }: any) {
 
 
-    const { t } = useTranslation();
     return (
         <Modal
             animationIn="zoomIn"
@@ -39,10 +39,11 @@ export default function AddCartModal({
                 <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
                     {item.attributes?.map((attribute: any, attrIndex: number) => (
                         <View key={attrIndex} className="mb-4">
-                            <Text className="text-lg font-semibold mb-2 dark:text-gray-200">
+                            <Text className="text-lg  mb-2 dark:text-gray-200">
                                 {attribute.name}
                             </Text>
-                            {attribute.values.map((attrValue: any, valueIndex: number) => {
+                           <View className='flex flex-row gap-5'>
+                             {attribute.values.map((attrValue: any, valueIndex: number) => {
                                 const isSelected = selectedAttribute?.value === attrValue.value;
                                 return (
                                     <ModalSelectOption
@@ -55,6 +56,7 @@ export default function AddCartModal({
                                     />
                                 );
                             })}
+                           </View>
                         </View>
                     ))}
                 </ScrollView>

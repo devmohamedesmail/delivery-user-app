@@ -8,7 +8,7 @@ import StoreRating from '@/components/ui/store-card/store-rating'
 import StoreDeliveryTime from '@/components/ui/store-card/store-delivery-time'
 import StoreOpeningTime from '@/components/ui/store-card/store-opening-time'
 
-export default function FeaturedStoreCard({ store, className }: { store: Store, className?: string }) {
+export default function FeaturedStoreCard({ store }: { store: Store }) {
     const router = useRouter()
     return (
         <Pressable
@@ -19,20 +19,20 @@ export default function FeaturedStoreCard({ store, className }: { store: Store, 
                     params: { storeItem: JSON.stringify(store) }
                 })
             }}
-            className={`${className}`}
-        // style={{ width: 280 }}
+            className="mb-4"
+            style={{ width: 200 }}
         >
             <View className="rounded-3xl overflow-hidden bg-white dark:bg-card-dark shadow-lg">
-                
+
                 <StoreImage store={store} />
-                
+
 
                 {/* Store Info */}
                 <View className="p-4">
                     <StoreTitle store={store} />
                     <View className="flex-row items-center justify-between">
                         <StoreRating store={store} />
-                         <StoreDeliveryTime store={store} />
+                        <StoreDeliveryTime store={store} />
                     </View>
                     <StoreOpeningTime store={store} />
                 </View>

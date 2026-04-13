@@ -5,7 +5,7 @@ import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
 import { useRouter } from 'expo-router'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, View } from 'react-native'
-import FeaturedStoreCard from '../../ui/product/featured-store-card'
+import FeaturedStoreCard from '../../ui/store-card/featured-store-card'
 
 export default function FeaturedStores() {
     const { t } = useTranslation()
