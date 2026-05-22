@@ -13,14 +13,13 @@ import axios from 'axios';
 import { config } from '@/constants/config';
 import { clearCart } from '@/redux/store';
 import { useAppDispatch } from '@/redux/hooks';
-import { useSetting } from '../common/useSetting';
+import { useSetting } from '@/hooks/common/useSetting';
 
 
 export default function useCreateOrder() {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const cartItems = useAppSelector(selectCartItems);
-
     const { selectedPlace } = usePlace()
     const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -35,9 +34,7 @@ export default function useCreateOrder() {
 
     const { settings } = useSetting();
 
-
-    
-
+console.log("cart item",cartItems)
 
     const formik = useFormik({
         initialValues: {
@@ -70,6 +67,7 @@ export default function useCreateOrder() {
                     return;
                 }
 
+                // 1. group by store
                 const groupedByStore = cartItems.reduce<Record<number, CartItem[]>>(
                     (acc, item) => {
                         if (!acc[item.store_id]) {
@@ -82,21 +80,33 @@ export default function useCreateOrder() {
                 );
 
 
+                // -------------------------------------
+                const extraStores = Math.max(Object.keys(groupedByStore).length - 1, 0);
 
-                // ✅ 2. create request لكل store
-                const requests = Object.keys(groupedByStore).map((storeId) => {
+                const extraCost =
+                    extraStores *
+                    selectedArea?.price *
+                    (Number(settings?.order_extra_ratio) / 100);
+
+                const delivery_fee =
+                    Number(selectedArea?.price || 0) + extraCost;
+
+                    // ---------------------------------
+
+                // 2. build stores array (NEW FORMAT)
+                const stores = Object.keys(groupedByStore).map((storeId) => {
                     const items = groupedByStore[Number(storeId)];
 
-                    const storeTotal = items.reduce(
+                    const total_price = items.reduce(
                         (sum, item) => sum + item.price * item.quantity,
                         0
                     );
 
-
-                    return axios.post(`${config.URL}/orders/create`, {
+                    return {
                         store_id: Number(storeId),
-
-                        order: items.map((item) => ({
+                        store_name: items[0].store_name,
+                        total_price: Number(total_price.toFixed(2)),
+                        items: items.map((item) => ({
                             id: item.id,
                             name: item.name,
                             description: item.description,
@@ -104,48 +114,46 @@ export default function useCreateOrder() {
                             quantity: item.quantity,
                             price: item.price,
                             selectedAttribute: item.selectedAttribute,
-                            store_id: item.store_id,
-                            store_name: item.store_name,
                         })),
+                    };
+                });
 
-                        // total_price:  Number(selectedArea?.price || 0) + Number(storeTotal.toFixed(2)),
-                        total_price: Number(storeTotal.toFixed(2)),
+                // 3. single request (IMPORTANT CHANGE 🔥)
+                const response = await axios.post(
+                    `${config.URL}/orders/create-group`,
+                    {
+                        stores,
                         customer_name: values.customer_name,
                         delivery_address: values.address,
                         phone: values.phone,
                         area_id: selectedArea?.id,
                         area_name: selectedArea?.name,
-                    });
-                });
+                        delivery_fee,
+                    }
+                );
 
-                // ✅ process all requests
-                // await Promise.all(requests);
-                const results = await Promise.allSettled(requests);
-                const hasError = results.some((r) => r.status === "rejected");
-
-                if (hasError) {
-                    Toast.show({
-                        type: "error",
-                        text1: t("order.orderErrorcreate"),
-                        position: "top",
-                    });
-                    return;
+                // 4. success handling
+                if (!response.data?.success) {
+                    throw new Error("Order creation failed");
                 }
 
                 setSuccessModalVisible(true);
                 formik.resetForm();
+                setSelectedArea(null);
                 dispatch(clearCart());
+
             } catch (error: any) {
+                console.error("Order creation error:", error);
                 Toast.show({
                     type: "error",
                     text1: t("order.orderErrorcreate"),
-                    text2: error.response.data.message || error.message,
+                    text2: error.response?.data?.error || error.message,
                     position: "top",
                 });
             } finally {
                 setLoading(false);
             }
-        },
+        }
     });
     const storeCount = Object.keys(
         cartItems.reduce<Record<number, CartItem[]>>((acc, item) => {

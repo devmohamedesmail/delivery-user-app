@@ -49,12 +49,12 @@ export default function FeaturedStoresPage() {
             <View className="flex-1 px-3  ">
                 <FlatList
                     numColumns={2}
-                    columnWrapperStyle={{ gap: 6 }}
+                    columnWrapperStyle={{ gap: 2 }}
                     contentContainerStyle={{ gap: 6, marginTop: 10, paddingBottom: 50 }}
                     data={data}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                        <FeaturedStoreCard store={item} />
+                        <FeaturedStoreCard store={item}  />
                     )}
                     ListEmptyComponent={
                         <Text className="text-center mt-10">

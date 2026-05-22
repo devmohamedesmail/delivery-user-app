@@ -5,6 +5,7 @@ import CheckoutSummery from '@/components/screens/checkout/checkout-summery';
 import CheckoutAction from '@/components/screens/checkout/checkout-action';
 import CheckoutSuccessModal from '@/components/screens/checkout/checkout-success-modal';
 import useCreateOrder from '@/hooks/checkout/useCreateOrder';
+import useCreateGroupOrder from '@/hooks/checkout/useCreateGroupOrder';
 import CheckoutHeader from '@/components/screens/checkout/checkout-header';
 import CheckoutPriceNote from '@/components/screens/checkout/checkout-price-note';
 import CheckoutAreaPaper from '@/components/screens/checkout/checkout-area-paper';
@@ -27,7 +28,8 @@ export default function Checkout() {
     setModalVisible,
     storeCount
 
-  } = useCreateOrder()
+  } = useCreateGroupOrder()
+  // useCreateGroupOrder()
   return (
     <>
       <Layout>

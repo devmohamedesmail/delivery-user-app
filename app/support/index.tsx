@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { View,Text, ScrollView,Linking} from "react-native";
+import { View, ScrollView,Linking} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import Layout from "@/components/ui/layout";
 import colors from "@/constants/colors";
 import Header from "@/components/ui/header";
 import ContactCard from "@/components/ui/contact-card";
+import { useSetting } from "@/hooks/common/useSetting";
+import Text from "@/components/ui/text";
 
 interface ContactOption {
   icon: keyof typeof Ionicons.glyphMap;
@@ -20,15 +22,14 @@ interface ContactOption {
 
 export default function Support() {
   const { t, i18n } = useTranslation();
-
+  const { settings }=useSetting()
 
   const handleCall = () => {
-    const phoneNumber = "0102283709";
-    Linking.openURL(`tel:${phoneNumber}`);
+    Linking.openURL(`tel:${settings?.support_phone}`);
   };
 
   const handleChat = () => {
-    Linking.openURL(`https://wa.me/+971589107126`);
+    Linking.openURL(`https://wa.me/${settings?.support_whatsapp}`);
   }
 
 
@@ -67,7 +68,7 @@ export default function Support() {
       >
         {/* Quick Actions */}
         <View className="px-5 mt-6">
-          <Text className="text-lg font-bold text-black text-center mb-4">
+          <Text className="text-lg  text-black text-center mb-4">
             {t("support.quickActions")}
           </Text>
           <View className="flex-row flex-wrap -mx-2">
