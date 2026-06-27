@@ -9,7 +9,7 @@ export default function ProductPrice({ item }: { item: Product }) {
     const { t } = useTranslation()
     const priceRange = getPriceRange(item);
     return (
-        <View className="flex-row justify-center items-center mt-1">
+        <View className="flex-row justify-center items-center mt-1 bg-primary rounded-tr-xl rounded-bl-xl px-4 py-2">
             {item.product_type === "simple" ? (
                 <>
                     {item.on_sale && item.sale_price ? (
@@ -29,7 +29,7 @@ export default function ProductPrice({ item }: { item: Product }) {
 
 
                 </>) : (<Text>
-                    <Text className="text-primary cairoBold text-sm">
+                    <Text className="text-primary cairoBold text-sm text-white">
                         {priceRange?.min} - {priceRange?.max} {t("common.currency")}
                     </Text>
                 </Text>)}

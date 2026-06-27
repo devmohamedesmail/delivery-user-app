@@ -20,7 +20,7 @@ export default function EditProfile() {
 
     return (
         <Layout>
-            <Header title={t('account.edit_profile', 'Edit Profile')} />
+            <Header title={t('account.edit_profile')} />
             
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -56,7 +56,7 @@ export default function EditProfile() {
                             </TouchableOpacity>
 
                             <Text className="text-gray-600 dark:text-gray-400 text-sm mt-3">
-                                {t('profile.tapToChangeAvatar', 'Tap to change avatar')}
+                                {t('account.tapToChangeAvatar')}
                             </Text>
                         </View>
 
@@ -99,7 +99,7 @@ export default function EditProfile() {
                         {/* Update Button */}
                         <View className="mt-8 mb-10">
                             <Button
-                                title={updateProfileMutation.isPending ? t('common.updating', 'Updating...') : t('common.update', 'Update Profile')}
+                                title={updateProfileMutation.isPending ? t('common.updating') : t('account.update_profile')}
                                 onPress={() => formik.handleSubmit()}
                                 loading={updateProfileMutation.isPending}
                                 size="lg"

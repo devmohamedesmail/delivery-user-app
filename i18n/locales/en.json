@@ -285,7 +285,18 @@
     "delete_account": "Delete Account",
     "wallet_balance": "Wallet Balance",
     "points": "Points",
-    "referral_code": "Referral Code"
+    "referral_code": "Referral Code",
+    "edit_profile": "Edit Profile",
+    "update_profile": "Update Profile",
+    "profile_updated": "Profile updated successfully",
+    "profile_update_failed": "Failed to update profile",
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_new_password": "Confirm New Password",
+    "password_changed": "Password changed successfully",
+    "password_change_failed": "Failed to change password",
+    "tapToChangeAvatar": "Tap to change avatar"
   },
   "navigation": {
     "home": "Home",

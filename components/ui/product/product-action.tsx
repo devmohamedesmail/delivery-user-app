@@ -3,6 +3,7 @@ import { Pressable, View } from 'react-native'
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AddCartModal from '@/components/ui/cart/add-cart-modal';
 import { useAddToCart } from '@/hooks/stores/useAddToCart';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function ProductAction({ item, store }: { item: any; store: any }) {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -34,9 +35,8 @@ export default function ProductAction({ item, store }: { item: any; store: any }
             >
                 <View className="flex flex-row justify-center">
                     <MaterialIcons name="add" size={18} color="white" />
-                    {/* <Text className="text-white text-sm font-bold ml-1">
-              {t("cart.addToCart")}
-            </Text> */}
+                    {/* <Ionicons name="bag-add" size={24} color="white" /> */}
+            
                 </View>
             </Pressable>
 

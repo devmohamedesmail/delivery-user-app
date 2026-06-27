@@ -27,7 +27,7 @@ export default function ProductListCard({ item, store }: { item: Product; store:
         <ProductCartQuantity item={item} />
 
 
-        <View className="justify-between items-center ml-2 flex-row">
+        <View className="justify-between items-center  flex-row ">
           <ProductPrice item={item} />
           <ProductAction item={item} store={store} />
         </View>
