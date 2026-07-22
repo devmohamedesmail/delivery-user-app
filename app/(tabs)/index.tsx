@@ -14,6 +14,7 @@ import { queryClient } from '@/providers';
 import PlacesBottomPaper from '@/components/screens/home/places-bottom-paper';
 import SupportFloatBtn from '@/components/ui/support-float-btn';
 import ResetPlaceButton from '@/components/ui/reset-place';
+import CategoriesSection from '@/components/screens/home/categories-section';
 
 
 
@@ -64,7 +65,9 @@ export default function Home() {
           <SlideShow />
           {/* <ResetPlaceButton /> */}
           <StoreTypesSection />
+          <CategoriesSection />
           <FeaturedStores />
+
         </ScrollView>
         <SupportFloatBtn />
       </Layout>

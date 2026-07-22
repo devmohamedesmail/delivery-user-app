@@ -1,5 +1,5 @@
 import { Store } from '@/@types/stores'
-import SectionTitle from '@/components/ui/section-title'
+import SectionTitle from '@/components/shared/section-title'
 import Skeleton from '@/components/ui/skeleton'
 import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
 import { useRouter } from 'expo-router'

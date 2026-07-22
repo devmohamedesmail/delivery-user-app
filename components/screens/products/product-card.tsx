@@ -8,6 +8,8 @@ import ProductAction from "@/components/ui/product/product-action";
 import ProductCartQuantity from "@/components/ui/product/product-cart-quantity";
 
 export default function ProductCard({ item, store }: { item: Product; store: any }) {
+
+  
   return (
     <View className="w-1/2 mb-5 bg-white dark:bg-card-dark rounded-lg overflow-hidden relative">
       <ProductImage

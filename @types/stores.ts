@@ -79,3 +79,14 @@ export interface Attribute {
     name: string
     values: AttributeValue[]
 }
+
+
+
+export interface Category {
+  id: number;
+  image: string;
+  name: string;
+  slug: string;
+  content: string;
+  is_published: boolean;
+}

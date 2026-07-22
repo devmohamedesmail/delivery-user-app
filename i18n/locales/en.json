@@ -248,7 +248,7 @@
     "tryDifferentKeywords": "Try different keywords",
     "checkBackLater": "Check back later for great stores!",
     "reviews": "reviews",
-    "total":"Total Products",
+    "total": "Total Products",
     "orderViaWhatsapp": "Order via WhatsApp",
     "whatsappOrderNote": "You can order via WhatsApp until stores become available in the app"
   },
@@ -397,13 +397,13 @@
     "noAreaFoundDescription": "We couldn't find any delivery areas matching your address.",
     "selectyourArea": "Select your area",
     "searchArea": "Search area...",
-    "address":"Address",
-    "enterAddress":"Enter your address",
-    "areaRequired":"Area is required",
-    "customer_name":"Customer Name",
-    "enterCustomerName":"Enter your Name",
-    "customerNameRequired":"Customer Name is required",
-    "storesCount":"Your Order From {{count}} Stores"
+    "address": "Address",
+    "enterAddress": "Enter your address",
+    "areaRequired": "Area is required",
+    "customer_name": "Customer Name",
+    "enterCustomerName": "Enter your Name",
+    "customerNameRequired": "Customer Name is required",
+    "storesCount": "Your Order From {{count}} Stores"
   },
   "orders": {
     "myOrders": "My Orders",
@@ -577,7 +577,6 @@
     "ratingIsRequired": "Rating is required",
     "reviewIsRequired": "Review comment is required",
     "reviewAddedSuccessfully": "Review added successfully!"
-
   },
   "checkout": {
     "title": "Checkout",
@@ -600,11 +599,11 @@
     "free": "Free",
     "delivery": "Delivery"
   },
-  "splash":{
+  "splash": {
     "welcome_message": "Welcome to our app",
     "loading_app": "Loading app..."
   },
-  "network":{
+  "network": {
     "title": "No Internet Connection",
     "message": "Please check your internet connection and try again.",
     "retry": "Retry"
@@ -637,5 +636,13 @@
     "title": "Update Available!",
     "description": "We have launched a new version of the app with additional features and improvements. Please update to continue.",
     "button": "Update Now"
+  },
+  "products": {
+    "empty": "No products yet",
+    "emptyDesc": "There are no products in this category at your location.",
+    "noResults": "No results found",
+    "tryDifferent": "Try a different search term",
+    "searchPlaceholder": "Search products…",
+    "total": "Products"
   }
 }

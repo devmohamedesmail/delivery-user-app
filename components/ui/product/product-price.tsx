@@ -14,7 +14,7 @@ export default function ProductPrice({ item }: { item: Product }) {
                 <>
                     {item.on_sale && item.sale_price ? (
                         <>
-                            <Text className="text-primary cairoBold text-md">
+                            <Text className="text-white cairoBold text-md">
                                 {item.sale_price} {t("common.currency")}
                             </Text>
                             <Text className="text-gray-400 line-through cairoBold text-xs ml-2">
@@ -22,14 +22,14 @@ export default function ProductPrice({ item }: { item: Product }) {
                             </Text>
                         </>
                     ) : (
-                        <Text className="text-primary cairoBold text-sm">
-                            {item.price} {t("common.currency")}
+                        <Text className="text-white cairoBold text-sm">
+                            {item.price} {t("common.currency")} 
                         </Text>
                     )}
 
 
                 </>) : (<Text>
-                    <Text className="text-primary cairoBold text-sm text-white">
+                    <Text className="text-white cairoBold text-sm">
                         {priceRange?.min} - {priceRange?.max} {t("common.currency")}
                     </Text>
                 </Text>)}
