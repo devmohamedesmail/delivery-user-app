@@ -8,19 +8,32 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const { colorScheme, setColorScheme } = useColorScheme()
   const [ready, setReady] = useState(false)
 
+  // useEffect(() => {
+  //   async function loadTheme() {
+  //     const savedTheme = await AsyncStorage.getItem(THEME_KEY)
+
+  //     if (savedTheme === "light" || savedTheme === "dark") {
+  //       setColorScheme(savedTheme)
+  //     }
+
+  //     setReady(true)
+  //   }
+
+  //   loadTheme()
+  // }, [])
+
+
   useEffect(() => {
     async function loadTheme() {
-      const savedTheme = await AsyncStorage.getItem(THEME_KEY)
+      const savedTheme = await AsyncStorage.getItem(THEME_KEY);
 
-      if (savedTheme === "light" || savedTheme === "dark") {
-        setColorScheme(savedTheme)
-      }
+      setColorScheme(savedTheme === "dark" ? "dark" : "light");
 
-      setReady(true)
+      setReady(true);
     }
 
-    loadTheme()
-  }, [])
+    loadTheme();
+  }, []);
 
   useEffect(() => {
     if (!colorScheme) return

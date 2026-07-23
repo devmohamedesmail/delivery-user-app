@@ -168,7 +168,8 @@
     "open_now": "مفتوح الآن",
     "closed": "مغلق",
     "opens_at": "يفتح في",
-    "min_delivery": "دقيقة"
+    "min_delivery": "دقيقة",
+    "categoriesDescription": "اكتشف المطاعم وتصفح وجباتك المفضلة حسب التصنيف."
   },
   "notFound": {
     "title": "الصفحة غير موجودة",

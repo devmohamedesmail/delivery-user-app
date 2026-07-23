@@ -1,14 +1,14 @@
 import colors from '@/constants/colors';
+import useImports from '@/hooks/common/use-import';
 import { selectCartTotalItems, useAppSelector } from "@/redux/hooks";
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 export default function Layout() {
     const totalItems = useAppSelector(selectCartTotalItems);
     const { colorScheme } = useColorScheme();
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useImports();
     return (
         <Tabs
             screenOptions={{
@@ -17,9 +17,9 @@ export default function Layout() {
                 tabBarInactiveTintColor: 'gray',
                 tabBarStyle: {
                     backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background,
-                    // height: 90,
-                    // paddingBottom: 10,
-                    // paddingTop: 10,
+                    height: 80,
+                    paddingBottom: 10,
+                    paddingTop: 10,
                 },
                 tabBarLabelStyle: {
                     fontFamily: i18n.language === 'ar' ? 'Cairo_400Regular' : 'Poppins_400Regular',

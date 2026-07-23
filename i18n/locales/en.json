@@ -168,7 +168,8 @@
     "open_now": "Open Now",
     "closed": "Closed",
     "opens_at": "Opens at",
-    "min_delivery": "min"
+    "min_delivery": "min",
+    "categoriesDescription": "Discover restaurants and browse your favorite meals by category."
   },
   "notFound": {
     "title": "Page Not Found",
